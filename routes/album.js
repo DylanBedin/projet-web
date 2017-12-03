@@ -1,43 +1,43 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Book = require('../models/Book.js');
+var Album = require('../models/Album.js');
 
-/* GET ALL BOOKS */
+/* GET ALL ALBUMS */
 router.get('/', function (req, res, next) {
-    Book.find(function (err, products) {
+    Album.find(function (err, products) {
         if (err) return next(err);
         res.json(products);
     });
 });
 
-/* GET SINGLE BOOK BY ID */
+/* GET SINGLE ALBUM BY ID */
 router.get('/:id', function (req, res, next) {
-    Book.findById(req.params.id, function (err, post) {
+    Album.findById(req.params.id, function (err, post) {
         if (err) return next(err);
         res.json(post);
     });
 });
 
-/* SAVE BOOK */
+/* SAVE ALBUM */
 router.post('/', function (req, res, next) {
-    Book.create(req.body, function (err, post) {
+    Album.create(req.body, function (err, post) {
         if (err) return next(err);
         res.json(post);
     });
 });
 
-/* UPDATE BOOK */
+/* UPDATE ALBUM */
 router.put('/:id', function (req, res, next) {
-    Book.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    Album.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
         if (err) return next(err);
         res.json(post);
     });
 });
 
-/* DELETE BOOK */
+/* DELETE ALBUM */
 router.delete('/:id', function (req, res, next) {
-    Book.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    Album.findByIdAndRemove(req.params.id, req.body, function (err, post) {
         if (err) return next(err);
         res.json(post);
     });

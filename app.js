@@ -4,7 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
+//Differents types of works
+var album = require('./routes/album');
 var book = require('./routes/book');
+var game = require('./routes/game');
+var movie = require('./routes/movie');
+var serie = require('./routes/serie');
+
 var app = express();
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -19,8 +25,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
+
+app.use('/albums', express.static(path.join(__dirname, 'dist')));
+app.use('/album', album);
 app.use('/books', express.static(path.join(__dirname, 'dist')));
 app.use('/book', book);
+app.use('/games', express.static(path.join(__dirname, 'dist')));
+app.use('/game', game);
+app.use('/movies', express.static(path.join(__dirname, 'dist')));
+app.use('/movie', movie);
+app.use('/series', express.static(path.join(__dirname, 'dist')));
+app.use('/serie', serie);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

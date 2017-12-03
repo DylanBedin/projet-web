@@ -1,43 +1,43 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Book = require('../models/Book.js');
+var Game = require('../models/Game.js');
 
-/* GET ALL BOOKS */
+/* GET ALL GAMES */
 router.get('/', function (req, res, next) {
-    Book.find(function (err, products) {
+    Game.find(function (err, products) {
         if (err) return next(err);
         res.json(products);
     });
 });
 
-/* GET SINGLE BOOK BY ID */
+/* GET SINGLE GAME BY ID */
 router.get('/:id', function (req, res, next) {
-    Book.findById(req.params.id, function (err, post) {
+    Game.findById(req.params.id, function (err, post) {
         if (err) return next(err);
         res.json(post);
     });
 });
 
-/* SAVE BOOK */
+/* SAVE GAME */
 router.post('/', function (req, res, next) {
-    Book.create(req.body, function (err, post) {
+    Game.create(req.body, function (err, post) {
         if (err) return next(err);
         res.json(post);
     });
 });
 
-/* UPDATE BOOK */
+/* UPDATE GAME */
 router.put('/:id', function (req, res, next) {
-    Book.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    Game.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
         if (err) return next(err);
         res.json(post);
     });
 });
 
-/* DELETE BOOK */
+/* DELETE GAME */
 router.delete('/:id', function (req, res, next) {
-    Book.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    Game.findByIdAndRemove(req.params.id, req.body, function (err, post) {
         if (err) return next(err);
         res.json(post);
     });
