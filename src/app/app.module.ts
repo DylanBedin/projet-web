@@ -26,9 +26,15 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
 import { SerieDetailComponent } from './serie-detail/serie-detail.component';
 import { GameEditComponent } from './game-edit/game-edit.component';
 import { SerieEditComponent } from './serie-edit/serie-edit.component';
+import {LoginComponent} from './Connexion/login/login.component';
+import {UserService} from "../services/user-service";
+import {AuthenticationService} from "../services/authentication-service";
+import {RegisterComponent} from "./Connexion/register/register.component";
 
 
 const appRoutes: Routes = [
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
     {
         path: 'albums',
         component: AlbumComponent,
@@ -131,7 +137,7 @@ const appRoutes: Routes = [
     },
     {
         path: '',
-        redirectTo: '/books',
+        redirectTo: 'login',
         pathMatch: 'full'
     }
 ];
@@ -140,6 +146,8 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
+        LoginComponent,
+        RegisterComponent,
         BookComponent,
         BookDetailComponent,
         BookCreateComponent,
@@ -171,7 +179,10 @@ const appRoutes: Routes = [
             {enableTracing: true} // <-- debugging purposes only
         )
     ],
-    providers: [],
+    providers: [
+        AuthenticationService,
+        UserService,
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
