@@ -1,9 +1,11 @@
 exports.config = {
-  framework: "mocha",
-  specs: ["tests/e2e/**/*Spec.js"],
+  framework: "jasmine",
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  suites: {
+    ex1: "tests/e2e/registerSpec.js",
+  },
   capabilities: {
     'browserName': 'chrome'
   },
-  seleniumServerJar: "./node_modules/protractor/selenium/selenium-server-standalone-2.48.2.jar"
-};
-
+  seleniumServerJar: "/usr/lib/node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.8.1.jar"
+}
