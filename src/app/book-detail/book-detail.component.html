@@ -18,4 +18,8 @@
       <a [routerLink]="['/book-edit', book._id]" class="btn btn-success">EDIT</a>
       <button class="btn btn-danger" type="button" (click)="deleteBook(book._id)">DELETE</button>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary" type="button" (click)="addBookToCollection(book._id)">ADD TO COLLECTION</button>
+      </div>
 </div>

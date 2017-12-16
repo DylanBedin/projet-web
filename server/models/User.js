@@ -3,11 +3,16 @@ var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
     username: { type: String, unique: true },
     password: String,
-    albumsList: Array,
-    booksList: Array,
-    gameList: Array,
-    moviesList: Array,
-    seriesList: Array,
+    albumsCollection: Array,
+    booksCollection: Array,
+    gameCollection: Array,
+    moviesCollection: Array,
+    seriesCollection: Array,
+    albumsEnvies: Array,
+    booksEnvies: Array,
+    gameEnvies: Array,
+    moviesEnvies: Array,
+    seriesEnvies: Array,
 });
 
 module.exports = mongoose.model('User', UserSchema);

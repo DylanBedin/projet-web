@@ -28,13 +28,16 @@ export class LoginComponent implements OnInit {
          // get return url from route parameters or default to '/'
          this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
      }
+
   login(){
     this.loading = true;
             this.authenticationService.login(this.user.username, this.user.password)
                 .subscribe(
                     data => {
-
-                      this.router.navigate(['/books']);                    },
+                        console.log(data[0]);
+                        sessionStorage.setItem("userID", data._id);
+                        this.router.navigate(['/books']);
+                        },
                     error => {
                       console.log(error);
                         this.loading = false;

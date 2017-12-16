@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Book = require('../models/Book.js');
+var User = require('../models/User.js');
 
 /* GET ALL BOOKS */
 router.get('/', function (req, res, next) {
@@ -27,11 +28,22 @@ router.post('/', function (req, res, next) {
     });
 });
 
+/* ADD BOOK TO COLLECTION */
+router.post('/:id', function (req, res, next) {
+    const bookID = req.params.id;
+    console.log(bookID);
+    User.findById(sessionStorage.getItem("userID"), function(err, post){
+        if(err) return next(err);
+        post.booksCollection.push(bookID);
+        console.log(post);
+    });
+});
+
 /* UPDATE BOOK */
 router.put('/:id', function (req, res, next) {
-    Book.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
         if (err) return next(err);
-        res.json(post);
+        console.log(req.body);
     });
 });
 

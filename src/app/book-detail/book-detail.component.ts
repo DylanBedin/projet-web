@@ -10,29 +10,39 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class BookDetailComponent implements OnInit {
 
-  book = {};
+    book = {};
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
-  }
+    constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
+    }
 
-  ngOnInit() {
-    this.getBookDetail(this.route.snapshot.params['id']);
-  }
+    ngOnInit() {
+        this.getBookDetail(this.route.snapshot.params['id']);
+    }
 
-  getBookDetail(id) {
-    this.http.get('/book/' + id).subscribe(data => {
-      this.book = data;
-    });
-  }
+    getBookDetail(id) {
+        this.http.get('/book/' + id).subscribe(data => {
+            this.book = data;
+        });
+    }
 
-  deleteBook(id) {
-    this.http.delete('/book/' + id)
-      .subscribe(res => {
-          this.router.navigate(['/books']);
-        }, (err) => {
-          console.log(err);
-        }
-      );
-  }
+    deleteBook(id) {
+        this.http.delete('/book/' + id)
+            .subscribe(res => {
+                    this.router.navigate(['/books']);
+                }, (err) => {
+                    console.log(err);
+                }
+            );
+    }
 
+    addBookToCollection(id) {
+        console.log("USERID");
+        console.log(sessionStorage.getItem("userID"));
+        console.log("tqt c la");
+        console.log(this.route.snapshot.params['id']);
+        this.http.post('/book/' + this.route.snapshot.params['id'], this.book)
+            .subscribe(res => {
+                let id = res['_id'];
+            });
+    }
 }
