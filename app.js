@@ -15,8 +15,8 @@ var user = require('./server/routes/user');
 var app = express();
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/mean-angular5', { useMongoClient: true, promiseLibrary: require('bluebird') })
-    .then(() =>  console.log('connection succesful BD'))
+mongoose.connect('mongodb://userweb2017:pwdweb2017@ds059546.mlab.com:59546/dbweb2017', { useMongoClient: true, promiseLibrary: require('bluebird') })
+    .then(() =>  console.log('connection succesful BD mlab.com'))
 .catch((err) => console.error(err));
 
 // Create link to Angular build directory
