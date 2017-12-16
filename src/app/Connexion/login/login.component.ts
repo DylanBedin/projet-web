@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
                 .subscribe(
                     data => {
 
-                      this.router.navigate(['/books']);                    },
+                      this.router.navigate(['/parcourir']);                    },
                     error => {
                       console.log(error);
                         this.loading = false;
