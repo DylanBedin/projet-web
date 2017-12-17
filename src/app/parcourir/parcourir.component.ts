@@ -10,6 +10,7 @@ export class ParcourirComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    sessionStorage.setItem("action","parcourir");
   }
 
 }

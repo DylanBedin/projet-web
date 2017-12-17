@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cat.component.css']
 })
 export class CatComponent implements OnInit {
-
+  currentAction;
   constructor() { }
 
   ngOnInit() {
+    this.currentAction=sessionStorage.getItem("action");
   }
 
 }

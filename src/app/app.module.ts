@@ -36,14 +36,28 @@ import { LeftComponent } from './Menus/left/left.component';
 import { ParcourirComponent } from './parcourir/parcourir.component';
 import { BookCollectionComponent } from './Book/book-collection/book-collection.component';
 import { BookWishlistComponent } from './Book/book-wishlist/book-wishlist.component';
+import { CollectionComponent } from './collection/collection.component';
+import { EnviesComponent } from './envies/envies.component';
 
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'parcourir', component: ParcourirComponent},
+    { path: 'collection', component: CollectionComponent},
+    { path: 'envies', component: EnviesComponent},
     {
         path: 'parcourir/albums',
+        component: AlbumComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'collection/albums',
+        component: AlbumComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'envies/albums',
         component: AlbumComponent,
         data: {title: 'Album List'}
     },
@@ -68,6 +82,16 @@ const appRoutes: Routes = [
         data: {title: 'Book List'}
     },
     {
+        path: 'collection/books',
+        component: BookComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'envies/books',
+        component: BookComponent,
+        data: {title: 'Album List'}
+    },
+    {
         path: 'book-detail/:id',
         component: BookDetailComponent,
         data: {title: 'Book Details'}
@@ -86,6 +110,16 @@ const appRoutes: Routes = [
         path: 'parcourir/games',
         component: GameComponent,
         data: {title: 'Game List'}
+    },
+    {
+        path: 'collection/games',
+        component: GameComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'envies/games',
+        component: GameComponent,
+        data: {title: 'Album List'}
     },
     {
         path: 'game-detail/:id',
@@ -108,6 +142,16 @@ const appRoutes: Routes = [
         data: {title: 'Movie List'}
     },
     {
+        path: 'collection/movies',
+        component: MovieComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'envies/movies',
+        component: MovieComponent,
+        data: {title: 'Album List'}
+    },
+    {
         path: 'movie-detail/:id',
         component: MovieDetailComponent,
         data: {title: 'Movie Details'}
@@ -124,6 +168,16 @@ const appRoutes: Routes = [
     },
     {
         path: 'parcourir/series',
+        component: SerieComponent,
+        data: {title: 'Serie List'}
+    },
+    {
+        path: 'collection/series',
+        component: SerieComponent,
+        data: {title: 'Serie List'}
+    },
+    {
+        path: 'envies/series',
         component: SerieComponent,
         data: {title: 'Serie List'}
     },
@@ -189,8 +243,13 @@ const appRoutes: Routes = [
         CatComponent,
         LeftComponent,
         ParcourirComponent,
+<<<<<<< HEAD
         BookCollectionComponent,
         BookWishlistComponent
+=======
+        CollectionComponent,
+        EnviesComponent
+>>>>>>> 727eb257d81b30b645c287da39544f26f9390ac0
     ],
     imports: [
         BrowserModule,

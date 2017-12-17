@@ -26,16 +26,15 @@ export class BookDetailComponent implements OnInit {
         });
     }
 
-    deleteBook(id) {
-        this.http.delete('/book/' + id)
-            .subscribe(res => {
-                    this.router.navigate(['/books']);
-                }, (err) => {
-                    console.log(err);
-                }
-            );
-    }
-
+  deleteBook(id) {
+    this.http.delete('/book/' + id)
+      .subscribe(res => {
+          this.router.navigate(['/parcourir/books']);
+        }, (err) => {
+          console.log(err);
+        }
+      );
+  }
 
     addBook(id, list) {
         const userID = sessionStorage.getItem("userID");

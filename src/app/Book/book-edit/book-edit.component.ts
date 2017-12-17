@@ -28,7 +28,7 @@ export class BookEditComponent implements OnInit {
     this.http.put('/book/'+id, data)
       .subscribe(res => {
           let id = res['_id'];
-          this.router.navigate(['/book-details', id]);
+          this.router.navigate(['/book-detail', id]);
         }, (err) => {
           console.log(err);
         }
