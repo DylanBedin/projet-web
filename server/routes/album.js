@@ -15,6 +15,7 @@ router.get('/', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
     Album.findById(req.params.id, function (err, post) {
         if (err) return next(err);
+        console.log(post);
         res.json(post);
     });
 });
