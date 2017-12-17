@@ -1,7 +1,7 @@
-describe('inscription', function() {
+describe('inscription and login', function() {
 
   beforeEach(function() {
-    browser.get('http://localhost:3000');
+    browser.get('http://localhost:4200');
   });
 
   it('tentative de register', function() {
@@ -12,8 +12,8 @@ describe('inscription', function() {
     var password = element(by.id('passwordRegister'));
     var saveButton = element(by.id('btnSaveRegister'));
 
-    username.sendKeys('capsy');
-    password.sendKeys('blabla');
+    username.sendKeys('toto');
+    password.sendKeys('aze');
     saveButton.click();
   });
 
@@ -22,9 +22,11 @@ describe('inscription', function() {
     var password = element(by.id('password'));
     var loginButton = element(by.id('btnLogin'));
 
-    username.sendKeys('capsy');
-    password.sendKeys('blabla');
+    username.sendKeys('toto');
+    password.sendKeys('aze');
     loginButton.click();
+    browser.waitForAngular();
+    expect(browser.driver.getCurrentUrl()).toMatch('/parcourir');
   });
 
 });
