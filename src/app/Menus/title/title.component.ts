@@ -7,7 +7,7 @@ import {HttpClient} from "@angular/common/http";
     styleUrls: ['./title.component.css']
 })
 export class TitleComponent implements OnInit {
-    currentUser;
+    currentUser: any;
 
     constructor(private http: HttpClient) {
     }

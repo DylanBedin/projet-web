@@ -18,7 +18,7 @@ export class AlbumCreateComponent implements OnInit {
     }
 
     saveAlbum() {
-        this.http.post('/album', this.album)
+        this.http.post('/albums', this.album)
             .subscribe(res => {
                     let id = res['_id'];
                     this.router.navigate(['/album-detail', id]);

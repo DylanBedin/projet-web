@@ -14,7 +14,7 @@ export class SerieComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
-        this.http.get('/serie').subscribe(data => {
+        this.http.get('/series').subscribe(data => {
             this.series = data;
         });
     }

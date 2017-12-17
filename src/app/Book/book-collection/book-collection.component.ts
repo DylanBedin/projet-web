@@ -22,7 +22,7 @@ export class BookCollectionComponent implements OnInit {
         this.http.get('/users/' + userID).subscribe(user => {
             this.user = user;
             for (var i = 0; i < this.user['booksCollection'].length; i++) {
-                this.http.get('/book/' + this.user['booksCollection'][i]).subscribe(book => {
+                this.http.get('/books/' + this.user['booksCollection'][i]).subscribe(book => {
                         if (book == null) {
                             this.user['albumsCollection'].splice(book, 1);
                         }
