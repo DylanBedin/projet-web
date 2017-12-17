@@ -19,13 +19,13 @@ export class BookEditComponent implements OnInit {
     }
 
     getBook(id) {
-        this.http.get('/book/'+id).subscribe(data => {
+        this.http.get('/books/'+id).subscribe(data => {
             this.book = data;
         });
     }
 
     updateBook(id, data) {
-        this.http.put('/book/'+id, data)
+        this.http.put('/books/'+id, data)
             .subscribe(res => {
                     let id = res['_id'];
                     console.log("whyyyy");

@@ -20,13 +20,13 @@ export class AlbumDetailComponent implements OnInit {
     }
 
     getAlbumDetail(id) {
-        this.http.get('/album/' + id).subscribe(data => {
+        this.http.get('/albums/' + id).subscribe(data => {
             this.album = data;
         });
     }
 
     deleteAlbum(id) {
-        this.http.delete('/album/' + id)
+        this.http.delete('/albums/' + id)
             .subscribe(res => {
                     this.router.navigate(['/parcourir/albums']);
                 }, (err) => {

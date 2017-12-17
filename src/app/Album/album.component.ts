@@ -14,7 +14,7 @@ export class AlbumComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
-        this.http.get('/album').subscribe(data => {
+        this.http.get('/albums').subscribe(data => {
             this.albums = data;
         });
     }

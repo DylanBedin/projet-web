@@ -25,14 +25,14 @@ var app = express();
 
 app.use(express.static(distDir));
 // Initialise l'app.
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.use('/album', album);
-app.use('/book', book);
-app.use('/game', game);
-app.use('/movie', movie);
-app.use('/serie', serie);
 
+app.use('/albums', album);
+app.use('/books', book);
+app.use('/games', game);
+app.use('/movies', movie);
+app.use('/series', serie);
 app.use('/users',user);
 
 

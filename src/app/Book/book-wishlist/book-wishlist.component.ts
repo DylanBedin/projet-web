@@ -20,7 +20,7 @@ export class BookWishlistComponent implements OnInit {
         this.http.get('/users/' + userID).subscribe(user => {
             this.user = user;
             for(var i = 0; i < this.user['booksEnvies'].length; i++){
-                this.http.get('/book/' + this.user['booksEnvies'][i]).subscribe(book =>
+                this.http.get('/books/' + this.user['booksEnvies'][i]).subscribe(book =>
                     booksArray.push(book)
                 );
             }

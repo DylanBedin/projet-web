@@ -18,13 +18,13 @@ export class AlbumEditComponent implements OnInit {
     }
 
     getAlbum(id) {
-        this.http.get('/album/'+id).subscribe(data => {
+        this.http.get('/albums/'+id).subscribe(data => {
             this.album = data;
         });
     }
 
     updateAlbum(id, data) {
-        this.http.put('/album/'+id, data)
+        this.http.put('/albums/'+id, data)
             .subscribe(res => {
                     let id = res['_id'];
                     this.router.navigate(['/album-detail', id]);

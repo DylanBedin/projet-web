@@ -14,7 +14,7 @@ export class MovieComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
-        this.http.get('/movie').subscribe(data => {
+        this.http.get('/movies').subscribe(data => {
             this.movies = data;
         });
     }
