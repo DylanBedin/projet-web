@@ -243,13 +243,10 @@ const appRoutes: Routes = [
         CatComponent,
         LeftComponent,
         ParcourirComponent,
-<<<<<<< HEAD
         BookCollectionComponent,
-        BookWishlistComponent
-=======
+        BookWishlistComponent,
         CollectionComponent,
         EnviesComponent
->>>>>>> 727eb257d81b30b645c287da39544f26f9390ac0
     ],
     imports: [
         BrowserModule,

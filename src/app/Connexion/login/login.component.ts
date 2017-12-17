@@ -43,5 +43,4 @@ export class LoginComponent implements OnInit {
                     this.loading = false;
                 });
     }
->>>>>>> 727eb257d81b30b645c287da39544f26f9390ac0
 }
