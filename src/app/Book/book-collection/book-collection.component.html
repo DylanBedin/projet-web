@@ -1,9 +1,5 @@
-<app-menu></app-menu>
-<app-cat></app-cat>
-<app-left></app-left>
 <div class="container">
-  <h1>Liste de Livres</h1>
-  <button type="button" class="btn btn-info btn-lg btn3d"   [routerLink]="['/book-create']"> Ajouter Livre</button>
+  <h1>Book List</h1>
   <table class="table">
     <thead>
     <tr>
@@ -17,6 +13,7 @@
       <td>{{ book.title }}</td>
       <td>{{ book.author }}</td>
       <td><a [routerLink]="['/book-detail', book._id]">Détails </a></td>
+      <button type="button" href="" (click)="removeBook(book._id)" class="btn btn-danger">Supprimer</button>
     </tr>
     </tbody>
   </table>

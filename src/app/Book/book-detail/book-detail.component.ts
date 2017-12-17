@@ -3,27 +3,28 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-book-detail',
-  templateUrl: './book-detail.component.html',
-  styleUrls: ['./book-detail.component.css'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-book-detail',
+    templateUrl: './book-detail.component.html',
+    styleUrls: ['./book-detail.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class BookDetailComponent implements OnInit {
 
-  book = {};
+    book = {};
+    user = {};
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
-  }
+    constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
+    }
 
-  ngOnInit() {
-    this.getBookDetail(this.route.snapshot.params['id']);
-  }
+    ngOnInit() {
+        this.getBookDetail(this.route.snapshot.params['id']);
+    }
 
-  getBookDetail(id) {
-    this.http.get('/book/' + id).subscribe(data => {
-      this.book = data;
-    });
-  }
+    getBookDetail(id) {
+        this.http.get('/book/' + id).subscribe(data => {
+            this.book = data;
+        });
+    }
 
   deleteBook(id) {
     this.http.delete('/book/' + id)
@@ -34,5 +35,19 @@ export class BookDetailComponent implements OnInit {
         }
       );
   }
+
+    addBook(id, list) {
+        const userID = sessionStorage.getItem("userID");
+        this.http.get('/users/' + userID, this.user)
+            .subscribe(res => {
+                this.user = res;
+                if (this.user[list].indexOf(id) == -1) {
+                    this.user[list].push(id);
+                    console.log(this.user);
+                }
+                this.http.put('/users/' + userID, this.user).subscribe(data => {
+                });
+            });
+    }
 
 }

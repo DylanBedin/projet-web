@@ -34,6 +34,8 @@ import { TitleComponent } from './Menus/title/title.component';
 import { CatComponent } from './Menus/cat/cat.component';
 import { LeftComponent } from './Menus/left/left.component';
 import { ParcourirComponent } from './parcourir/parcourir.component';
+import { BookCollectionComponent } from './Book/book-collection/book-collection.component';
+import { BookWishlistComponent } from './Book/book-wishlist/book-wishlist.component';
 import { CollectionComponent } from './collection/collection.component';
 import { EnviesComponent } from './envies/envies.component';
 
@@ -195,6 +197,16 @@ const appRoutes: Routes = [
         data: {title: 'Edit Serie'}
     },
     {
+        path: 'parcourir/collection',
+        component: BookCollectionComponent,
+        data: {title: 'Book Collection List'}
+    },
+    {
+        path: 'parcourir/wishlist',
+        component: BookWishlistComponent,
+        data: {title: 'Book Wishlist'}
+    },
+    {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
@@ -231,8 +243,13 @@ const appRoutes: Routes = [
         CatComponent,
         LeftComponent,
         ParcourirComponent,
+<<<<<<< HEAD
+        BookCollectionComponent,
+        BookWishlistComponent
+=======
         CollectionComponent,
         EnviesComponent
+>>>>>>> 727eb257d81b30b645c287da39544f26f9390ac0
     ],
     imports: [
         BrowserModule,
