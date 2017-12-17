@@ -40,6 +40,12 @@ import { EnviesComponent } from './envies/envies.component';
 import {BookWishlistComponent} from "./Book/book-wishlist/book-wishlist.component";
 import { AlbumCollectionComponent } from './Album/album-collection/album-collection.component';
 import { AlbumWishlistComponent } from './Album/album-wishlist/album-wishlist.component';
+import { GameCollectionComponent } from './Game/game-collection/game-collection.component';
+import { GameWishlistComponent } from './Game/game-wishlist/game-wishlist.component';
+import { MovieCollectionComponent } from './Movie/movie-collection/movie-collection.component';
+import { MovieWishlistComponent } from './Movie/movie-wishlist/movie-wishlist.component';
+import { SerieCollectionComponent } from './Serie/serie-collection/serie-collection.component';
+import { SerieWishlistComponent } from './Serie/serie-wishlist/serie-wishlist.component';
 
 
 const appRoutes: Routes = [
@@ -115,13 +121,13 @@ const appRoutes: Routes = [
     },
     {
         path: 'collection/games',
-        component: GameComponent,
-        data: {title: 'Album List'}
+        component: GameCollectionComponent,
+        data: {title: 'Game Collection'}
     },
     {
         path: 'envies/games',
-        component: GameComponent,
-        data: {title: 'Album List'}
+        component: GameWishlistComponent,
+        data: {title: 'Games Wishlist'}
     },
     {
         path: 'game-detail/:id',
@@ -145,13 +151,13 @@ const appRoutes: Routes = [
     },
     {
         path: 'collection/movies',
-        component: MovieComponent,
-        data: {title: 'Album List'}
+        component: MovieCollectionComponent,
+        data: {title: 'Movie Collection'}
     },
     {
         path: 'envies/movies',
-        component: MovieComponent,
-        data: {title: 'Album List'}
+        component: MovieWishlistComponent,
+        data: {title: 'Movie Wishlist'}
     },
     {
         path: 'movie-detail/:id',
@@ -175,12 +181,12 @@ const appRoutes: Routes = [
     },
     {
         path: 'collection/series',
-        component: SerieComponent,
+        component: SerieCollectionComponent,
         data: {title: 'Serie List'}
     },
     {
         path: 'envies/series',
-        component: SerieComponent,
+        component: SerieWishlistComponent,
         data: {title: 'Serie List'}
     },
     {
@@ -241,6 +247,12 @@ const appRoutes: Routes = [
         BookWishlistComponent,
         AlbumCollectionComponent,
         AlbumWishlistComponent,
+        GameCollectionComponent,
+        GameWishlistComponent,
+        MovieCollectionComponent,
+        MovieWishlistComponent,
+        SerieCollectionComponent,
+        SerieWishlistComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,23 @@
+<app-title></app-title>
+<app-cat></app-cat>
+<app-left></app-left>
+<div class="container">
+  <h1>Game List</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Éditeur</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let game of games">
+      <td>{{ game.title }}</td>
+      <td>{{ game.publisher }}</td>
+      <td><a [routerLink]="['/game-detail', game._id]">Détails </a></td>
+      <button type="button" href="" (click)="removeGame(game._id)" class="btn btn-danger">Supprimer</button>
+    </tr>
+    </tbody>
+  </table>
+</div>

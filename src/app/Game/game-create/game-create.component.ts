@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-game-create',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameCreateComponent implements OnInit {
 
-  constructor() { }
+    constructor(private http: HttpClient, private router: Router) { }
 
-  ngOnInit() {
-  }
+    game = {};
+
+    ngOnInit() {
+    }
+
+    saveGame() {
+        this.http.post('/games', this.game)
+            .subscribe(res => {
+                    let id = res['_id'];
+                    this.router.navigate(['/game-detail', id]);
+                }, (err) => {
+                    console.log(err);
+                }
+            );
+    }
 
 }

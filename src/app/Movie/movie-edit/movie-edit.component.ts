@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie-edit',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieEditComponent implements OnInit {
 
-  constructor() { }
+    movie = {};
 
-  ngOnInit() {
-  }
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+
+    ngOnInit() {
+        this.getMovie(this.route.snapshot.params['id']);
+    }
+
+    getMovie(id) {
+        this.http.get('/movies/'+id).subscribe(data => {
+            this.movie = data;
+        });
+    }
+
+    updateMovie(id, data) {
+        this.http.put('/movies/'+id, data)
+            .subscribe(res => {
+                    let id = res['_id'];
+                    this.router.navigate(['/movie-detail', id]);
+                }, (err) => {
+                    console.log(err);
+                }
+            );
+    }
 
 }

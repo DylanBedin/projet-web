@@ -1,3 +1,44 @@
-<p>
-  movie-edit works!
-</p>
+<div class="container">
+  <h1>Edit Movie</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="updateMovie(movie._id, movie)" #movieForm="ngForm">
+        <div class="form-group">
+          <label for="name">Titre</label>
+          <input type="text" class="form-control" [(ngModel)]="movie.title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Réalisateur</label>
+          <input type="text" class="form-control" [(ngModel)]="movie.director" name="director" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Producteur</label>
+          <input type="text" class="form-control" [(ngModel)]="movie.producer" name="producer" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Scénariste</label>
+          <input type="text" class="form-control" [(ngModel)]="movie.writer" name="writer" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Acteurs</label>
+          <input type="text" class="form-control" [(ngModel)]="movie.actors" name="actors" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Description</label>
+          <input type="text" class="form-control" [(ngModel)]="movie.description" name="description" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Année de Sortie</label>
+          <input type="number" class="form-control" [(ngModel)]="movie.published_year" name="published_year" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Genre</label>
+          <input type="text" class="form-control" [(ngModel)]="movie.genre" name="genre" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!movieForm.form.valid">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

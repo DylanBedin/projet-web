@@ -25,7 +25,8 @@ var app = express();
 
 app.use(express.static(distDir));
 // Initialise l'app.
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
 
 app.use('/albums', album);
 app.use('/books', book);

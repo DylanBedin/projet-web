@@ -1,3 +1,33 @@
-<p>
-  game-detail works!
-</p>
+<div class="container">
+  <h1>{{ game.title }}</h1>
+  <dl class="list">
+    <dt>Auteur</dt>
+    <dd>{{ game.author }}</dd>
+    <dt>Description</dt>
+    <dd>{{ game.description }}</dd>
+    <dt>Année de Publication</dt>
+    <dd>{{ game.published_year }}</dd>
+    <dt>Développeurs</dt>
+    <dd>{{ game.developer}}</dd>
+    <dt>Genre</dt>
+    <dd>{{ game.genre }}</dd>
+    <dt>Éditeur</dt>
+    <dd>{{ game.publisher }}</dd>
+    <dt>Producteurs</dt>
+    <dd>{{ game.producer }}</dd>
+  </dl>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <a [routerLink]="['/game-edit', game._id]" class="btn btn-success">Éditer</a>
+    <button class="btn btn-danger" type="button" (click)="deleteGame(game._id)">Supprimer</button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="button" (click)="addGame(game._id, 'gamesCollection')">Ajouter à la Collection</button>
+    </div>
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="button" (click)="addGame(game._id, 'gamesEnvies')">Ajouter à la Liste d'Envies</button>
+    </div>
+  </div>
+</div>
