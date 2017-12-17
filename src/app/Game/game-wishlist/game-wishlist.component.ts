@@ -20,7 +20,7 @@ export class GameWishlistComponent implements OnInit {
         this.http.get('/users/' + userID).subscribe(user => {
             this.user = user;
             for(var i = 0; i < this.user['gamesEnvies'].length; i++){
-                this.http.get('/game/' + this.user['gamesEnvies'][i]).subscribe(game =>
+                this.http.get('/games/' + this.user['gamesEnvies'][i]).subscribe(game =>
                     gamesArray.push(game)
                 );
             }
@@ -39,7 +39,6 @@ export class GameWishlistComponent implements OnInit {
                     });
                     window.location.reload();
                 }
-
             });
     }
 

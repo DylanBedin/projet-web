@@ -1,3 +1,33 @@
-<p>
-  serie-detail works!
-</p>
+<div class="container">
+  <h1>{{ serie.title }}</h1>
+  <dl class="list">
+    <dt>Réalisateur</dt>
+    <dd>{{ serie.director }}</dd>
+    <dt>Scénariste</dt>
+    <dd>{{ serie.author }}</dd>
+    <dt>Chaîne</dt>
+    <dd>{{ serie.channel }}</dd>
+    <dt>Acteurs</dt>
+    <dd>{{ serie.actors}}</dd>
+    <dt>Nombre de Saisons</dt>
+    <dd>{{ serie.nb_seasons }}</dd>
+    <dt>Description</dt>
+    <dd>{{ serie.published_year }}</dd>
+    <dt>Genre</dt>
+    <dd>{{ serie.genre }}</dd>
+  </dl>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <a [routerLink]="['/serie-edit', serie._id]" class="btn btn-success">Éditer</a>
+    <button class="btn btn-danger" type="button" (click)="deleteSerie(serie._id)">Supprimer</button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="button" (click)="addSerie(serie._id, 'seriesCollection')">Ajouter à la Collection</button>
+    </div>
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="button" (click)="addSerie(serie._id, 'seriesEnvies')">Ajouter à la Liste d'Envies</button>
+    </div>
+  </div>
+</div>

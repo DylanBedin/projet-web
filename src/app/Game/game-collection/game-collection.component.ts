@@ -23,7 +23,7 @@ export class GameCollectionComponent implements OnInit {
             for (var i = 0; i < this.user['gamesCollection'].length; i++) {
                 this.http.get('/games/' + this.user['gamesCollection'][i]).subscribe(game => {
                         if (game == null) {
-                            this.user['albumsCollection'].splice(game, 1);
+                            this.user['gamesCollection'].splice(game, 1);
                         }
                         else {
                             gamesArray.push(game);

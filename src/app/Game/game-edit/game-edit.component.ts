@@ -24,7 +24,7 @@ export class GameEditComponent implements OnInit {
     }
 
     updateGame(id, data) {
-        this.http.put('/game/'+id, data)
+        this.http.put('/games/'+id, data)
             .subscribe(res => {
                     let id = res['_id'];
                     this.router.navigate(['/game-detail', id]);

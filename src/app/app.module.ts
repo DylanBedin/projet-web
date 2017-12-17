@@ -44,6 +44,8 @@ import { GameCollectionComponent } from './Game/game-collection/game-collection.
 import { GameWishlistComponent } from './Game/game-wishlist/game-wishlist.component';
 import { MovieCollectionComponent } from './Movie/movie-collection/movie-collection.component';
 import { MovieWishlistComponent } from './Movie/movie-wishlist/movie-wishlist.component';
+import { SerieCollectionComponent } from './Serie/serie-collection/serie-collection.component';
+import { SerieWishlistComponent } from './Serie/serie-wishlist/serie-wishlist.component';
 
 
 const appRoutes: Routes = [
@@ -120,12 +122,12 @@ const appRoutes: Routes = [
     {
         path: 'collection/games',
         component: GameCollectionComponent,
-        data: {title: 'Album List'}
+        data: {title: 'Game Collection'}
     },
     {
         path: 'envies/games',
         component: GameWishlistComponent,
-        data: {title: 'Album List'}
+        data: {title: 'Games Wishlist'}
     },
     {
         path: 'game-detail/:id',
@@ -150,12 +152,12 @@ const appRoutes: Routes = [
     {
         path: 'collection/movies',
         component: MovieCollectionComponent,
-        data: {title: 'Album List'}
+        data: {title: 'Movie Collection'}
     },
     {
         path: 'envies/movies',
         component: MovieWishlistComponent,
-        data: {title: 'Album List'}
+        data: {title: 'Movie Wishlist'}
     },
     {
         path: 'movie-detail/:id',
@@ -179,12 +181,12 @@ const appRoutes: Routes = [
     },
     {
         path: 'collection/series',
-        component: SerieComponent,
+        component: SerieCollectionComponent,
         data: {title: 'Serie List'}
     },
     {
         path: 'envies/series',
-        component: SerieComponent,
+        component: SerieWishlistComponent,
         data: {title: 'Serie List'}
     },
     {
@@ -249,6 +251,8 @@ const appRoutes: Routes = [
         GameWishlistComponent,
         MovieCollectionComponent,
         MovieWishlistComponent,
+        SerieCollectionComponent,
+        SerieWishlistComponent,
     ],
     imports: [
         BrowserModule,
