@@ -4,39 +4,60 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-import {BookComponent} from './book/book.component';
+import {BookComponent} from './Book/book.component';
 
 import {RouterModule, Routes} from '@angular/router';
-import {BookDetailComponent} from './book-detail/book-detail.component';
-import {BookCreateComponent} from './book-create/book-create.component';
-import {BookEditComponent} from './book-edit/book-edit.component';
-import {AlbumComponent} from './album/album.component';
-import {AlbumDetailComponent} from './album-detail/album-detail.component';
-import {AlbumCreateComponent} from './album-create/album-create.component';
-import {AlbumEditComponent} from './album-edit/album-edit.component';
-import {MovieComponent} from './movie/movie.component';
-import {MovieCreateComponent} from './movie-create/movie-create.component';
-import {MovieDetailComponent} from './movie-detail/movie-detail.component';
-import {MovieEditComponent} from './movie-edit/movie-edit.component';
-import { GameComponent } from './game/game.component';
-import { SerieComponent } from './serie/serie.component';
-import { GameCreateComponent } from './game-create/game-create.component';
-import { SerieCreateComponent } from './serie-create/serie-create.component';
-import { GameDetailComponent } from './game-detail/game-detail.component';
-import { SerieDetailComponent } from './serie-detail/serie-detail.component';
-import { GameEditComponent } from './game-edit/game-edit.component';
-import { SerieEditComponent } from './serie-edit/serie-edit.component';
+import {BookDetailComponent} from './Book/book-detail/book-detail.component';
+import {BookCreateComponent} from './Book/book-create/book-create.component';
+import {BookEditComponent} from './Book/book-edit/book-edit.component';
+import {AlbumComponent} from './Album/album.component';
+import {AlbumDetailComponent} from './Album/album-detail/album-detail.component';
+import {AlbumCreateComponent} from './Album/album-create/album-create.component';
+import {AlbumEditComponent} from './Album/album-edit/album-edit.component';
+import {MovieComponent} from './Movie/movie.component';
+import {MovieCreateComponent} from './Movie/movie-create/movie-create.component';
+import {MovieDetailComponent} from './Movie/movie-detail/movie-detail.component';
+import {MovieEditComponent} from './Movie/movie-edit/movie-edit.component';
+import { GameComponent } from './Game/game.component';
+import { SerieComponent } from './Serie/serie.component';
+import { GameCreateComponent } from './Game/game-create/game-create.component';
+import { SerieCreateComponent } from './Serie/serie-create/serie-create.component';
+import { GameDetailComponent } from './Game/game-detail/game-detail.component';
+import { SerieDetailComponent } from './Serie/serie-detail/serie-detail.component';
+import { GameEditComponent } from './Game/game-edit/game-edit.component';
+import { SerieEditComponent } from './Serie/serie-edit/serie-edit.component';
 import {LoginComponent} from './Connexion/login/login.component';
 import {UserService} from "../services/user-service";
 import {AuthenticationService} from "../services/authentication-service";
 import {RegisterComponent} from "./Connexion/register/register.component";
+import { TitleComponent } from './Menus/title/title.component';
+import { CatComponent } from './Menus/cat/cat.component';
+import { LeftComponent } from './Menus/left/left.component';
+import { ParcourirComponent } from './parcourir/parcourir.component';
+import { BookCollectionComponent } from './Book/book-collection/book-collection.component';
+import { BookWishlistComponent } from './Book/book-wishlist/book-wishlist.component';
+import { CollectionComponent } from './collection/collection.component';
+import { EnviesComponent } from './envies/envies.component';
 
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'parcourir', component: ParcourirComponent},
+    { path: 'collection', component: CollectionComponent},
+    { path: 'envies', component: EnviesComponent},
     {
-        path: 'albums',
+        path: 'parcourir/albums',
+        component: AlbumComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'collection/albums',
+        component: AlbumComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'envies/albums',
         component: AlbumComponent,
         data: {title: 'Album List'}
     },
@@ -56,9 +77,19 @@ const appRoutes: Routes = [
         data: {title: 'Edit Album'}
     },
     {
-        path: 'books',
+        path: 'parcourir/books',
         component: BookComponent,
         data: {title: 'Book List'}
+    },
+    {
+        path: 'collection/books',
+        component: BookComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'envies/books',
+        component: BookComponent,
+        data: {title: 'Album List'}
     },
     {
         path: 'book-detail/:id',
@@ -76,9 +107,19 @@ const appRoutes: Routes = [
         data: {title: 'Edit Book'}
     },
     {
-        path: 'games',
+        path: 'parcourir/games',
         component: GameComponent,
         data: {title: 'Game List'}
+    },
+    {
+        path: 'collection/games',
+        component: GameComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'envies/games',
+        component: GameComponent,
+        data: {title: 'Album List'}
     },
     {
         path: 'game-detail/:id',
@@ -96,9 +137,19 @@ const appRoutes: Routes = [
         data: {title: 'Edit Game'}
     },
     {
-        path: 'movies',
+        path: 'parcourir/movies',
         component: MovieComponent,
         data: {title: 'Movie List'}
+    },
+    {
+        path: 'collection/movies',
+        component: MovieComponent,
+        data: {title: 'Album List'}
+    },
+    {
+        path: 'envies/movies',
+        component: MovieComponent,
+        data: {title: 'Album List'}
     },
     {
         path: 'movie-detail/:id',
@@ -116,7 +167,17 @@ const appRoutes: Routes = [
         data: {title: 'Edit Movie'}
     },
     {
-        path: 'series',
+        path: 'parcourir/series',
+        component: SerieComponent,
+        data: {title: 'Serie List'}
+    },
+    {
+        path: 'collection/series',
+        component: SerieComponent,
+        data: {title: 'Serie List'}
+    },
+    {
+        path: 'envies/series',
         component: SerieComponent,
         data: {title: 'Serie List'}
     },
@@ -134,6 +195,16 @@ const appRoutes: Routes = [
         path: 'serie-edit/:id',
         component: SerieEditComponent,
         data: {title: 'Edit Serie'}
+    },
+    {
+        path: 'parcourir/collection',
+        component: BookCollectionComponent,
+        data: {title: 'Book Collection List'}
+    },
+    {
+        path: 'parcourir/wishlist',
+        component: BookWishlistComponent,
+        data: {title: 'Book Wishlist'}
     },
     {
         path: '',
@@ -167,7 +238,15 @@ const appRoutes: Routes = [
         GameDetailComponent,
         SerieDetailComponent,
         GameEditComponent,
-        SerieEditComponent
+        SerieEditComponent,
+        TitleComponent,
+        CatComponent,
+        LeftComponent,
+        ParcourirComponent,
+        BookCollectionComponent,
+        BookWishlistComponent,
+        CollectionComponent,
+        EnviesComponent
     ],
     imports: [
         BrowserModule,

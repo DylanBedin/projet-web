@@ -12,11 +12,10 @@ var movie = require('./server/routes/movie');
 var serie = require('./server/routes/serie');
 var user = require('./server/routes/user');
 
-var app = express();
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/mean-angular5', { useMongoClient: true, promiseLibrary: require('bluebird') })
-    .then(() =>  console.log('connection succesful BD'))
+mongoose.connect('mongodb://userweb2017:pwdweb2017@ds059546.mlab.com:59546/dbweb2017', { useMongoClient: true, promiseLibrary: require('bluebird') })
+    .then(() =>  console.log('connection succesful BD mlab.com'))
 .catch((err) => console.error(err));
 
 // Create link to Angular build directory
@@ -42,24 +41,16 @@ app.use('/serie', serie);
 app.use('/users',user);
 
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+var port = 3000
+var server = app.listen(port, function () {
+    console.log("connection successfull", port)
 });
 
-module.exports = app;
+//module.exports = app;
 
 
