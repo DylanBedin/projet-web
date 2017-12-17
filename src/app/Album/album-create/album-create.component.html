@@ -1,3 +1,36 @@
-<p>
-  album-create works!
-</p>
+<div class="container">
+  <h1>Ajouter Nouvel Album</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="saveAlbum()" #albumForm="ngForm">
+        <div class="form-group">
+          <label for="name">Titre</label>
+          <input type="text" class="form-control" [(ngModel)]="album.title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Auteur</label>
+          <input type="text" class="form-control" [(ngModel)]="album.author" name="author" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Description</label>
+          <input type="text" class="form-control" [(ngModel)]="album.description" name="description" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Année de publication</label>
+          <input type="number" class="form-control" [(ngModel)]="album.published_year" name="published_year" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Label</label>
+          <input type="text" class="form-control" [(ngModel)]="album.publisher" name="publisher" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Genre</label>
+          <input type="text" class="form-control" [(ngModel)]="album.genre" name="genre" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!albumForm.form.valid">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

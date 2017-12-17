@@ -27,6 +27,7 @@ export class BookDetailComponent implements OnInit {
     }
 
   deleteBook(id) {
+        console.log(id);
     this.http.delete('/book/' + id)
       .subscribe(res => {
           this.router.navigate(['/parcourir/books']);
@@ -43,7 +44,6 @@ export class BookDetailComponent implements OnInit {
                 this.user = res;
                 if (this.user[list].indexOf(id) == -1) {
                     this.user[list].push(id);
-                    console.log(this.user);
                 }
                 this.http.put('/users/' + userID, this.user).subscribe(data => {
                 });
