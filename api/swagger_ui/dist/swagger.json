@@ -1,0 +1,1660 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Notre API",
+    "version": "1.0.0",
+    "title": "Swagger Web Project",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:4200",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            },
+            "headers": {
+              "X-Rate-Limit": {
+                "type": "integer",
+                "format": "int32",
+                "description": "calls per hour allowed by the user"
+              },
+              "X-Expires-After": {
+                "type": "string",
+                "format": "date-time",
+                "description": "date in UTC when token expires"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Logs out current logged in user session",
+        "description": "",
+        "operationId": "logoutUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/users/{username}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user by user name",
+        "description": "",
+        "operationId": "getUserByName",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing. ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Updated user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/albums": {
+      "get": {
+        "tags": [
+          "Albums"
+        ],
+        "summary": "return list of albums",
+        "description": "returns a map of albums",
+        "operationId": "getAlbums",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Albums"
+        ],
+        "summary": "Add a new album",
+        "description": "",
+        "operationId": "addAlbum",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Album object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Album"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Albums"
+        ],
+        "summary": "Update an existing Album",
+        "description": "",
+        "operationId": "updateAlbum",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Album object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Album"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Album not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/albums/{albumId}": {
+      "get": {
+        "tags": [
+          "Albums"
+        ],
+        "summary": "Find Album by ID",
+        "description": "Returns a single Album",
+        "operationId": "getAlbumById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AlbumId",
+            "in": "path",
+            "description": "ID of Album to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Album"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Album not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Albums"
+        ],
+        "summary": "Updates a Album in the store with form data",
+        "description": "",
+        "operationId": "updateAlbumWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AlbumId",
+            "in": "path",
+            "description": "ID of Album that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Updated name of the Album",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "author",
+            "in": "formData",
+            "description": "Updated author of the Album",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Updated description of the Album",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "published_year",
+            "in": "formData",
+            "description": "Updated year publication of the Album",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "publisher",
+            "in": "formData",
+            "description": "Updated publisher of the Album",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "genre",
+            "in": "formData",
+            "description": "Updated genre of the Album",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Albums"
+        ],
+        "summary": "Deletes a Album",
+        "description": "",
+        "operationId": "deleteAlbum",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AlbumId",
+            "in": "path",
+            "description": "Album id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Album not found"
+          }
+        }
+      }
+    },
+    "/games": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "return list of Games",
+        "description": "returns a map of Games",
+        "operationId": "getGames",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "Add a new Game",
+        "description": "",
+        "operationId": "addGame",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Game object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "Update an existing Game",
+        "description": "",
+        "operationId": "updateGame",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Game object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Game not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/games/{gameId}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "Find Game by ID",
+        "description": "Returns a single Game",
+        "operationId": "getGameById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "GameId",
+            "in": "path",
+            "description": "ID of Game to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Game not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "Updates a Game in the collection with form data",
+        "description": "",
+        "operationId": "updateGameWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "GameId",
+            "in": "path",
+            "description": "ID of Game that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Updated name of the Game",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "author",
+            "in": "formData",
+            "description": "Updated author of the Game",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Updated description of the Game",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "published_year",
+            "in": "formData",
+            "description": "Updated year publication of the Game",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "publisher",
+            "in": "formData",
+            "description": "Updated publisher of the Game",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "producer",
+            "in": "formData",
+            "description": "Updated producer of the Game",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "platforms",
+            "in": "formData",
+            "description": "Updated platforms of the Game",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "Deletes a Game",
+        "description": "",
+        "operationId": "deleteGame",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "GameId",
+            "in": "path",
+            "description": "Game id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Game not found"
+          }
+        }
+      }
+    },
+    "/movies": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "return list of Movies",
+        "description": "returns a map of Movies",
+        "operationId": "getMovies",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Add a new Movie",
+        "description": "",
+        "operationId": "addMovie",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Movie object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Movies"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Update an existing Movie",
+        "description": "",
+        "operationId": "updateMovie",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Movie object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Movies"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Movie not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/movies/{movieId}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Find Movie by ID",
+        "description": "Returns a single Movie",
+        "operationId": "getMovieById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MovieId",
+            "in": "path",
+            "description": "ID of Movie to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Movies"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Movie not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Updates a Movie in the store with form data",
+        "description": "",
+        "operationId": "updateMovieWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MovieId",
+            "in": "path",
+            "description": "ID of Movie that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "director",
+            "in": "formData",
+            "description": "Updated director of the Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Updated name of the Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "genre",
+            "in": "formData",
+            "description": "Updated genre of the Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Updated description of the Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "published_year",
+            "in": "formData",
+            "description": "Updated year publication of the Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "publisher",
+            "in": "formData",
+            "description": "Updated publisher of the Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "writher",
+            "in": "formData",
+            "description": "Updated writher of the Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "producer",
+            "in": "formData",
+            "description": "Updated producer of the Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "actors",
+            "in": "formData",
+            "description": "Updated producer of the Movie",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Deletes a Movie",
+        "description": "",
+        "operationId": "deleteMovie",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MovieId",
+            "in": "path",
+            "description": "Movie id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Movie not found"
+          }
+        }
+      }
+    },
+    "/series": {
+      "get": {
+        "tags": [
+          "Series"
+        ],
+        "summary": "return list of Series",
+        "description": "returns a map of Series",
+        "operationId": "getSeries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Series"
+        ],
+        "summary": "Add a new Serie",
+        "description": "",
+        "operationId": "addSerie",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Serie object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Series"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Series"
+        ],
+        "summary": "Update an existing Serie",
+        "description": "",
+        "operationId": "updateSerie",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Serie object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Series"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Serie not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/series/{serieId}": {
+      "get": {
+        "tags": [
+          "Series"
+        ],
+        "summary": "Find Serie by ID",
+        "description": "Returns a single Serie",
+        "operationId": "getSerieById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "SerieId",
+            "in": "path",
+            "description": "ID of Serie to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Series"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Serie not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Series"
+        ],
+        "summary": "Updates a Serie in the store with form data",
+        "description": "",
+        "operationId": "updateSerieWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "SerieId",
+            "in": "path",
+            "description": "ID of Serie that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Updated name of the Serie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "author",
+            "in": "formData",
+            "description": "Updated author of the Serie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Updated description of the Serie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "published_year",
+            "in": "formData",
+            "description": "Updated year publication of the Serie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "published",
+            "in": "formData",
+            "description": "Updated publisher of the Serie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "actors",
+            "in": "formData",
+            "description": "Updated genre of the Serie",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "channel",
+            "in": "formData",
+            "description": "Updated channel of the Serie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "nb_seasons",
+            "in": "formData",
+            "description": "Updated nb_seasons of the Serie",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Series"
+        ],
+        "summary": "Deletes a Serie",
+        "description": "",
+        "operationId": "deleteSerie",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "SerieId",
+            "in": "path",
+            "description": "Serie id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Serie not found"
+          }
+        }
+      }
+    },
+    "/books": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "return list of Books",
+        "description": "returns a map of Books",
+        "operationId": "getBooks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Books"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Add a new Book",
+        "description": "",
+        "operationId": "addBook",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Book object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Books"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Update an existing Book",
+        "description": "",
+        "operationId": "updateBook",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Book object that needs to be added to the collection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Books"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Book not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/books/{:_id}": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Find Book by ID",
+        "description": "Returns a single Book",
+        "operationId": "getBookById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "BookId",
+            "in": "path",
+            "description": "ID of Book to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Books"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Updates a Book in the store with form data",
+        "description": "",
+        "operationId": "updateBookWithForm",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "description": "ID of Book that needs to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "isbn",
+            "in": "formData",
+            "description": "Updated isbn of the Book",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Updated name of the Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "author",
+            "in": "formData",
+            "description": "Updated author of the Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "Updated description of the Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "published_year",
+            "in": "formData",
+            "description": "Updated year publication of the Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "publisher",
+            "in": "formData",
+            "description": "Updated publisher of the Book",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Deletes a Book",
+        "description": "",
+        "operationId": "deleteBook",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "description": "Book id to delete",
+            "required": true,
+            "type": "string",
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "format": "password"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "Album": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "published_year": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "updated_date": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "xml": {
+        "name": "Album"
+      }
+    },
+    "Game": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "published_year": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "platforms": {
+          "type": "array",
+          "xml": {
+            "name": "platforms"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "updated_date": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "xml": {
+        "name": "Album"
+      }
+    },
+    "Movies": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "director": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "published_year": {
+          "type": "string"
+        },
+        "wrtier": {
+          "type": "string"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "actors": {
+          "type": "array",
+          "xml": {
+            "name": "actors"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "updated_date": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "xml": {
+        "name": "Album"
+      }
+    },
+    "Series": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "string"
+        },
+        "nb_seasons": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "published_year": {
+          "type": "string"
+        },
+        "published": {
+          "type": "string"
+        },
+        "actors": {
+          "type": "array",
+          "xml": {
+            "name": "actors"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "updated_date": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "xml": {
+        "name": "Album"
+      }
+    },
+    "Books": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+        },
+        "isbn": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "published_year": {
+          "type": "integer",
+          "exemple":2017
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "updated_date": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "xml": {
+        "name": "Album"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
