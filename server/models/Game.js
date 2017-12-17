@@ -5,9 +5,10 @@ var GameSchema = new mongoose.Schema({
     author: String,
     description: String,
     published_year: String,
+    developer : String,
     publisher: String,
     producer: String,
-    author: String,
+    genre: String,
     platforms: [String],
     updated_date: {type: Date, default: Date.now},
 });

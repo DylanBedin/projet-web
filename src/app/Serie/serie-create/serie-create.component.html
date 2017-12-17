@@ -1,3 +1,51 @@
-<p>
-  serie-create works!
-</p>
+<app-title></app-title>
+<app-cat></app-cat>
+<app-left></app-left>
+<div class="container">
+  <h1>Ajouter Nouvelle Série</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="saveSerie()" #serieForm="ngForm">
+        <div class="form-group">
+          <label for="name">Titre</label>
+          <input type="text" class="form-control" [(ngModel)]="serie.title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Réalisateur</label>
+          <input type="text" class="form-control" [(ngModel)]="serie.director" name="director" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Scénariste</label>
+          <input type="text" class="form-control" [(ngModel)]="serie.author" name="author" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Chaîne</label>
+          <input type="text" class="form-control" [(ngModel)]="serie.channel" name="channel" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Acteurs</label>
+          <input type="text" class="form-control" [(ngModel)]="serie.actors" name="actors" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Nombre de Saisons</label>
+          <input type="number" class="form-control" [(ngModel)]="serie.nb_seasons" name="nb_seasons" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Description</label>
+          <input type="text" class="form-control" [(ngModel)]="serie.description" name="description" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Année de Sortie</label>
+          <input type="number" class="form-control" [(ngModel)]="serie.published_year" name="published_year" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Genre</label>
+          <input type="text" class="form-control" [(ngModel)]="serie.genre" name="genre" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!serieForm.form.valid">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

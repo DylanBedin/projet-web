@@ -27,10 +27,23 @@ function authenticate(username, password) {
             deferred.resolve({
                 _id: user._id,
                 username: user.username,
+                mail: user.mail,
                 password: user.password,
 
             });
         } else {
+            User.findOne({ mail: mail}, function (err, user) {
+                if(err) deferred.reject(err.name + ': ' + err.message);
+                if(user && password == user.password){
+                    //auth successful
+                    deferred.resolve({
+                        _id: user._id,
+                        username: user.username,
+                        mail: user.mail,
+                        password: user.password
+                    })
+                }
+            })
             // authentication failed
             deferred.resolve();
         }
@@ -87,7 +100,19 @@ function create(userParam) {
                 // username already exists
                 deferred.reject('Username "' + userParam.username + '" is already taken');
             } else {
-                createUser();
+                User.findOne(
+                    { mail: userParam.mail},
+                    function (err, user) {
+                        if(err) deferred.reject(err.name + ': ' + err.message);
+                        if(user){
+                            //mail already exists
+                            deferred.reject('Mail "' + userParam.mail + '" is already registered');
+                        }
+                        else{
+                            createUser();
+                        }
+                    }
+                )
             }
         });
 
