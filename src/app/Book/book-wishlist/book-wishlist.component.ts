@@ -34,10 +34,12 @@ export class BookWishlistComponent implements OnInit {
             .subscribe(user => {
                 this.user = user;
                 if (this.user['booksEnvies'].indexOf(id) != -1) {
-                    this.user['booksEnvies'].pop(id);
+                    this.user['booksEnvies'].splice(id, 1);
                     this.http.put('/users/' + userID, this.user).subscribe(data => {
                     });
+                    window.location.reload();
                 }
+
             });
     }
 

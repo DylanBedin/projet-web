@@ -13,6 +13,7 @@
       <td>{{ book.title }}</td>
       <td>{{ book.author }}</td>
       <td><a [routerLink]="['/book-detail', book._id]">Détails </a></td>
+      <button type="button" href="" (click)="removeBook(book._id)" class="btn btn-danger">Supprimer</button>
     </tr>
     </tbody>
   </table>

@@ -30,4 +30,18 @@ export class BookCollectionComponent implements OnInit {
         });
     }
 
+    removeBook(id) {
+        const userID = sessionStorage.getItem("userID");
+        this.http.get('/users/' + userID, this.user)
+            .subscribe(user => {
+                this.user = user;
+                if (this.user['booksCollection'].indexOf(id) != -1) {
+                    this.user['booksCollection'].splice(id, 1);
+                    this.http.put('/users/' + userID, this.user).subscribe(data => {
+                    });
+                    window.location.reload();
+                }
+
+            });
+    }
 }
