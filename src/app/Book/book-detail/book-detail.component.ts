@@ -3,14 +3,15 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-book-detail',
-  templateUrl: './book-detail.component.html',
-  styleUrls: ['./book-detail.component.css'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-book-detail',
+    templateUrl: './book-detail.component.html',
+    styleUrls: ['./book-detail.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class BookDetailComponent implements OnInit {
 
     book = {};
+    user = {};
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     }
@@ -35,14 +36,18 @@ export class BookDetailComponent implements OnInit {
             );
     }
 
-    addBookToCollection(id) {
-        console.log("USERID");
-        console.log(sessionStorage.getItem("userID"));
-        console.log("tqt c la");
-        console.log(this.route.snapshot.params['id']);
-        this.http.post('/book/' + this.route.snapshot.params['id'], this.book)
+
+    addBook(id, list) {
+        const userID = sessionStorage.getItem("userID");
+        this.http.get('/users/' + userID, this.user)
             .subscribe(res => {
-                let id = res['_id'];
+                this.user = res;
+                if (this.user[list].indexOf(id) == -1) {
+                    this.user[list].push(id);
+                    console.log(this.user);
+                }
+                this.http.put('/users/' + userID, this.user).subscribe(data => {
+                });
             });
     }
 }

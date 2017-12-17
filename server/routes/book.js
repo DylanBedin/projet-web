@@ -28,17 +28,6 @@ router.post('/', function (req, res, next) {
     });
 });
 
-/* ADD BOOK TO COLLECTION */
-router.post('/:id', function (req, res, next) {
-    const bookID = req.params.id;
-    console.log(bookID);
-    User.findById(sessionStorage.getItem("userID"), function(err, post){
-        if(err) return next(err);
-        post.booksCollection.push(bookID);
-        console.log(post);
-    });
-});
-
 /* UPDATE BOOK */
 router.put('/:id', function (req, res, next) {
     User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {

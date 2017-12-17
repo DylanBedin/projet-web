@@ -31,16 +31,14 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.loading = true;
-            this.authenticationService.login(this.user.username, this.user.password)
-                .subscribe(
-                    data => {
-                        console.log(data[0]);
-                        sessionStorage.setItem("userID", data._id);
-                        this.router.navigate(['/books']);
-                        },
-                    error => {
-                      console.log(error);
-                        this.loading = false;
-                    });
-        }
- }
+    this.authenticationService.login(this.user.username, this.user.password)
+    .subscribe(data => {
+        sessionStorage.setItem("userID", data['_id']);
+        this.router.navigate(['/parcourir']);
+    },
+            error => {
+        console.log(error);
+        this.loading = false;
+        });
+}
+}
