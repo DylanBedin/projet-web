@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Book = require('../models/Book.js');
-var User = require('../models/User.js');
 
 /* GET ALL BOOKS */
 router.get('/', function (req, res, next) {
@@ -30,9 +29,9 @@ router.post('/', function (req, res, next) {
 
 /* UPDATE BOOK */
 router.put('/:id', function (req, res, next) {
-    User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    Book.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
         if (err) return next(err);
-        console.log(req.body);
+        res.json(post);
     });
 });
 

@@ -1,6 +1,31 @@
 <app-menu></app-menu>
 <app-cat></app-cat>
 <app-left></app-left>
-<p>
-  album works!
-</p>
+<div class="container">
+  <h1>Liste d'Albums</h1>
+  <button type="button" class="btn btn-info btn-lg btn3d"   [routerLink]="['/album-create']"> Ajouter Album</button>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Description</th>
+      <th>Année de Publication</th>
+      <th>Label</th>
+      <th>Genre</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let album of albums">
+      <td>{{ album.title }}</td>
+      <td>{{ album.author }}</td>
+      <td>{{ album.description }}</td>
+      <td>{{ album.published_year }}</td>
+      <td>{{ album.publisher }}</td>
+      <td>{{ album.genre }}</td>
+      <td><a [routerLink]="['/album-detail', album._id]">Détails </a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>}

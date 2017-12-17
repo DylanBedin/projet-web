@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-album-create',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlbumCreateComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
-  }
+    constructor(private http: HttpClient, private router: Router) { }
 
+    album = {};
+
+    ngOnInit() {
+    }
+
+    saveAlbum() {
+        this.http.post('/album', this.album)
+            .subscribe(res => {
+                    let id = res['_id'];
+                    this.router.navigate(['/album-detail', id]);
+                }, (err) => {
+                    console.log(err);
+                }
+            );
+    }
 }

@@ -35,9 +35,11 @@ import { CatComponent } from './Menus/cat/cat.component';
 import { LeftComponent } from './Menus/left/left.component';
 import { ParcourirComponent } from './parcourir/parcourir.component';
 import { BookCollectionComponent } from './Book/book-collection/book-collection.component';
-import { BookWishlistComponent } from './Book/book-wishlist/book-wishlist.component';
 import { CollectionComponent } from './collection/collection.component';
 import { EnviesComponent } from './envies/envies.component';
+import {BookWishlistComponent} from "./Book/book-wishlist/book-wishlist.component";
+import { AlbumCollectionComponent } from './Album/album-collection/album-collection.component';
+import { AlbumWishlistComponent } from './Album/album-wishlist/album-wishlist.component';
 
 
 const appRoutes: Routes = [
@@ -53,12 +55,12 @@ const appRoutes: Routes = [
     },
     {
         path: 'collection/albums',
-        component: AlbumComponent,
-        data: {title: 'Album List'}
+        component: AlbumCollectionComponent,
+        data: {title: 'Album Collection'}
     },
     {
         path: 'envies/albums',
-        component: AlbumComponent,
+        component: AlbumWishlistComponent,
         data: {title: 'Album List'}
     },
     {
@@ -83,13 +85,13 @@ const appRoutes: Routes = [
     },
     {
         path: 'collection/books',
-        component: BookComponent,
-        data: {title: 'Album List'}
+        component: BookCollectionComponent,
+        data: {title: 'Book Collection'}
     },
     {
         path: 'envies/books',
-        component: BookComponent,
-        data: {title: 'Album List'}
+        component: BookWishlistComponent,
+        data: {title: 'Book Wishlist'}
     },
     {
         path: 'book-detail/:id',
@@ -197,16 +199,6 @@ const appRoutes: Routes = [
         data: {title: 'Edit Serie'}
     },
     {
-        path: 'parcourir/collection',
-        component: BookCollectionComponent,
-        data: {title: 'Book Collection List'}
-    },
-    {
-        path: 'parcourir/wishlist',
-        component: BookWishlistComponent,
-        data: {title: 'Book Wishlist'}
-    },
-    {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
@@ -244,9 +236,11 @@ const appRoutes: Routes = [
         LeftComponent,
         ParcourirComponent,
         BookCollectionComponent,
-        BookWishlistComponent,
         CollectionComponent,
-        EnviesComponent
+        EnviesComponent,
+        BookWishlistComponent,
+        AlbumCollectionComponent,
+        AlbumWishlistComponent,
     ],
     imports: [
         BrowserModule,
