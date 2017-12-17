@@ -1,6 +1,35 @@
 <app-menu></app-menu>
 <app-cat></app-cat>
 <app-left></app-left>
-<p>
-  game works!
-</p>
+<div class="container">
+  <h1>Liste de Jeux</h1>
+  <button type="button" class="btn btn-info btn-lg btn3d" [routerLink]="['/game-create']"> Ajouter Jeu</button>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Description</th>
+      <th>Année de Publication</th>
+      <th>Développeurs</th>
+      <th>Éditeur</th>
+      <th>Plateformes</th>
+      <th>Genre</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let game of games">
+      <td>{{ game.title }}</td>
+      <td>{{ game.author }}</td>
+      <td>{{ game.description }}</td>
+      <td>{{ game.published_year }}</td>
+      <td>{{ game.publisher }}</td>
+      <td>{{ game.producer }}</td>
+      <td>{{ game.platforms }}</td>
+      <td>{{ game.genre }}</td>
+      <td><a [routerLink]="['/game-detail', game._id]">Détails </a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

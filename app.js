@@ -27,15 +27,10 @@ app.use(express.static(distDir));
 // Initialise l'app.
 app.use(bodyParser.json())
 
-app.use('/albums', express.static(path.join(__dirname, 'dist')));
 app.use('/album', album);
-app.use('/books', express.static(path.join(__dirname, 'dist')));
 app.use('/book', book);
-app.use('/games', express.static(path.join(__dirname, 'dist')));
 app.use('/game', game);
-app.use('/movies', express.static(path.join(__dirname, 'dist')));
 app.use('/movie', movie);
-app.use('/series', express.static(path.join(__dirname, 'dist')));
 app.use('/serie', serie);
 
 app.use('/users',user);
