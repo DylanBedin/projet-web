@@ -14,25 +14,26 @@ export class BookEditComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.getBook(this.route.snapshot.params['id']);
-  }
+    ngOnInit() {
+        this.getBook(this.route.snapshot.params['id']);
+    }
 
-  getBook(id) {
-    this.http.get('/book/'+id).subscribe(data => {
-      this.book = data;
-    });
-  }
+    getBook(id) {
+        this.http.get('/book/'+id).subscribe(data => {
+            this.book = data;
+        });
+    }
 
-  updateBook(id, data) {
-    this.http.put('/book/'+id, data)
-      .subscribe(res => {
-          let id = res['_id'];
-          this.router.navigate(['/book-detail', id]);
-        }, (err) => {
-          console.log(err);
-        }
-      );
-  }
+    updateBook(id, data) {
+        this.http.put('/book/'+id, data)
+            .subscribe(res => {
+                    let id = res['_id'];
+                    console.log("whyyyy");
+                    this.router.navigate(['/book-detail', id]);
+                }, (err) => {
+                    console.log(err);
+                }
+            );
+    }
 
 }

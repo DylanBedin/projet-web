@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-album-edit',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlbumEditComponent implements OnInit {
 
-  constructor() { }
+    album = {};
 
-  ngOnInit() {
-  }
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+
+    ngOnInit() {
+        this.getAlbum(this.route.snapshot.params['id']);
+    }
+
+    getAlbum(id) {
+        this.http.get('/album/'+id).subscribe(data => {
+            this.album = data;
+        });
+    }
+
+    updateAlbum(id, data) {
+        this.http.put('/album/'+id, data)
+            .subscribe(res => {
+                    let id = res['_id'];
+                    this.router.navigate(['/album-detail', id]);
+                }, (err) => {
+                    console.log(err);
+                }
+            );
+    }
 
 }

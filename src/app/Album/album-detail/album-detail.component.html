@@ -1,3 +1,29 @@
-<p>
-  album-detail works!
-</p>
+<div class="container">
+  <h1>{{ album.title }}</h1>
+  <dl class="list">
+    <dt>Auteur</dt>
+    <dd>{{ album.author }}</dd>
+    <dt>Description</dt>
+    <dd>{{ album.description }}</dd>
+    <dt>Label</dt>
+    <dd>{{ album.publisher }}</dd>
+    <dt>Année de Publication</dt>
+    <dd>{{ album.published_year }}</dd>
+    <dt>Genre</dt>
+    <dd>{{ album.genre }}</dd>
+  </dl>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <a [routerLink]="['/album-edit', album._id]" class="btn btn-success">Éditer</a>
+    <button class="btn btn-danger" type="button" (click)="deleteAlbum(album._id)">Supprimer</button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="button" (click)="addAlbum(album._id, 'albumsCollection')">Ajouter à la Collection</button>
+    </div>
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="button" (click)="addAlbum(album._id, 'albumsEnvies')">Ajouter à la Liste d'Envies</button>
+    </div>
+  </div>
+</div>
