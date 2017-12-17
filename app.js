@@ -32,7 +32,6 @@ app.use('/books', book);
 app.use('/games', game);
 app.use('/movies', movie);
 app.use('/series', serie);
-
 app.use('/users',user);
 
 
