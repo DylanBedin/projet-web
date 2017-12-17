@@ -27,7 +27,7 @@ export class GameDetailComponent implements OnInit {
 
     deleteGame(id) {
         console.log(id);
-        this.http.delete('/game/' + id)
+        this.http.delete('/games/' + id)
             .subscribe(res => {
                     this.router.navigate(['/parcourir/games']);
                 }, (err) => {

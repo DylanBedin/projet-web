@@ -18,7 +18,7 @@ export class GameEditComponent implements OnInit {
     }
 
     getGame(id) {
-        this.http.get('/game/'+id).subscribe(data => {
+        this.http.get('/games/'+id).subscribe(data => {
             this.game = data;
         });
     }

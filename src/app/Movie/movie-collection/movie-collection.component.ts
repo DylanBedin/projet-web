@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-game-collection',
-  templateUrl: './game-collection.component.html',
-  styleUrls: ['./game-collection.component.css']
+  selector: 'app-movie-collection',
+  templateUrl: './movie-collection.component.html',
+  styleUrls: ['./movie-collection.component.css']
 })
-export class GameCollectionComponent implements OnInit {
+export class MovieCollectionComponent implements OnInit {
 
 
-    games: any;
+    movies: any;
     user = {};
 
     constructor(private http: HttpClient) {
@@ -17,31 +17,31 @@ export class GameCollectionComponent implements OnInit {
 
     ngOnInit() {
         const userID = sessionStorage.getItem('userID');
-        let gamesArray = [];
+        let moviesArray = [];
         this.http.get('/users/' + userID).subscribe(user => {
             this.user = user;
-            for (var i = 0; i < this.user['gamesCollection'].length; i++) {
-                this.http.get('/games/' + this.user['gamesCollection'][i]).subscribe(game => {
-                        if (game == null) {
-                            this.user['albumsCollection'].splice(game, 1);
+            for (var i = 0; i < this.user['moviesCollection'].length; i++) {
+                this.http.get('/movies/' + this.user['moviesCollection'][i]).subscribe(movie => {
+                        if (movie == null) {
+                            this.user['albumsCollection'].splice(movie, 1);
                         }
                         else {
-                            gamesArray.push(game);
+                            moviesArray.push(movie);
                         }
                     }
                 );
             }
-            this.games = gamesArray;
+            this.movies = moviesArray;
         });
     }
 
-    removeGame(id) {
+    removeMovie(id) {
         const userID = sessionStorage.getItem("userID");
         this.http.get('/users/' + userID, this.user)
             .subscribe(user => {
                 this.user = user;
-                if (this.user['gamesCollection'].indexOf(id) != -1) {
-                    this.user['gamesCollection'].splice(id, 1);
+                if (this.user['moviesCollection'].indexOf(id) != -1) {
+                    this.user['moviesCollection'].splice(id, 1);
                     this.http.put('/users/' + userID, this.user).subscribe(data => {
                     });
                     window.location.reload();

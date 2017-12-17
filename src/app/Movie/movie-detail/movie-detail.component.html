@@ -1,3 +1,33 @@
-<p>
-  movie-detail works!
-</p>
+<div class="container">
+  <h1>{{ movie.title }}</h1>
+  <dl class="list">
+    <dt>Réalisateur</dt>
+    <dd>{{ movie.director }}</dd>
+    <dt>Producteur</dt>
+    <dd>{{ movie.producer }}</dd>
+    <dt>Scénariste</dt>
+    <dd>{{ movie.writer }}</dd>
+    <dt>Acteurs</dt>
+    <dd>{{ movie.actors}}</dd>
+    <dt>Description</dt>
+    <dd>{{ movie.description }}</dd>
+    <dt>Année de Sortie</dt>
+    <dd>{{ movie.published_year }}</dd>
+    <dt>Genre</dt>
+    <dd>{{ movie.genre }}</dd>
+  </dl>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <a [routerLink]="['/movie-edit', movie._id]" class="btn btn-success">Éditer</a>
+    <button class="btn btn-danger" type="button" (click)="deleteMovie(movie._id)">Supprimer</button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="button" (click)="addMovie(movie._id, 'moviesCollection')">Ajouter à la Collection</button>
+    </div>
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="button" (click)="addMovie(movie._id, 'moviesEnvies')">Ajouter à la Liste d'Envies</button>
+    </div>
+  </div>
+</div>

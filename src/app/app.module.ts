@@ -42,6 +42,8 @@ import { AlbumCollectionComponent } from './Album/album-collection/album-collect
 import { AlbumWishlistComponent } from './Album/album-wishlist/album-wishlist.component';
 import { GameCollectionComponent } from './Game/game-collection/game-collection.component';
 import { GameWishlistComponent } from './Game/game-wishlist/game-wishlist.component';
+import { MovieCollectionComponent } from './Movie/movie-collection/movie-collection.component';
+import { MovieWishlistComponent } from './Movie/movie-wishlist/movie-wishlist.component';
 
 
 const appRoutes: Routes = [
@@ -147,12 +149,12 @@ const appRoutes: Routes = [
     },
     {
         path: 'collection/movies',
-        component: MovieComponent,
+        component: MovieCollectionComponent,
         data: {title: 'Album List'}
     },
     {
         path: 'envies/movies',
-        component: MovieComponent,
+        component: MovieWishlistComponent,
         data: {title: 'Album List'}
     },
     {
@@ -245,6 +247,8 @@ const appRoutes: Routes = [
         AlbumWishlistComponent,
         GameCollectionComponent,
         GameWishlistComponent,
+        MovieCollectionComponent,
+        MovieWishlistComponent,
     ],
     imports: [
         BrowserModule,

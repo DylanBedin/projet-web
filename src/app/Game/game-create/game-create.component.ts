@@ -17,7 +17,7 @@ export class GameCreateComponent implements OnInit {
     }
 
     saveGame() {
-        this.http.post('/game', this.game)
+        this.http.post('/games', this.game)
             .subscribe(res => {
                     let id = res['_id'];
                     this.router.navigate(['/game-detail', id]);

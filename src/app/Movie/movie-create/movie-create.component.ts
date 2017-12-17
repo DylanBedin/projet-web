@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie-create',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieCreateComponent implements OnInit {
 
-  constructor() { }
+    constructor(private http: HttpClient, private router: Router) { }
 
-  ngOnInit() {
-  }
+    movie = {};
+
+    ngOnInit() {
+    }
+
+    saveMovie() {
+        this.http.post('/movies', this.movie)
+            .subscribe(res => {
+                    let id = res['_id'];
+                    this.router.navigate(['/movie-detail', id]);
+                }, (err) => {
+                    console.log(err);
+                }
+            );
+    }
 
 }
