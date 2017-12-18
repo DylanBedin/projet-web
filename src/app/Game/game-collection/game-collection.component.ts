@@ -19,6 +19,8 @@ export class GameCollectionComponent implements OnInit {
     }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','game');
+        sessionStorage.setItem('action','collection');
         const userID = sessionStorage.getItem('userID');
         let gamesArray = [];
         this.http.get('/users/' + userID).subscribe(user => {

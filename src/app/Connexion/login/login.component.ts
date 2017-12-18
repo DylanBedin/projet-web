@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     sessionStorage.setItem('userID', data['_id']);
-                    this.router.navigate(['/parcourir']);
+                    this.router.navigate(['/parcourir/albums']);
                 },
                 error => {
                     console.log(error);

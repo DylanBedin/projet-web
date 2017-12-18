@@ -1,13 +1,13 @@
 <div id="cat">
   <ul class="nav nav-pills nav-fill">
     <li class="nav-item">
-      <a class="nav-link " routerLink="/parcourir">Parcourir</a>
+      <a class="nav-link " [ngStyle]="getStyle('parcourir')" id="parcourir" routerLink="/parcourir{{currentCat}}">Parcourir</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link " id="macollection" routerLink="/collection">Ma collection</a>
+      <a class="nav-link " [ngStyle]="getStyle('collection')" id="macollection" routerLink="/collection{{currentCat}}">Ma collection</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link " id="malisteEnvie" routerLink="/envies">Ma liste d'envies</a>
+      <a class="nav-link " [ngStyle]="getStyle('envies')" id="malisteEnvie" routerLink="/envies{{currentCat}}">Ma liste d'envies</a>
     </li>
   </ul>
 </div>

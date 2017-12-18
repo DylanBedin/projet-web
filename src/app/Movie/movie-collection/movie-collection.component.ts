@@ -18,6 +18,8 @@ export class MovieCollectionComponent implements OnInit {
     }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','movie');
+        sessionStorage.setItem('action','collection');
         const userID = sessionStorage.getItem('userID');
         let moviesArray = [];
         this.http.get('/users/' + userID).subscribe(user => {

@@ -15,6 +15,8 @@ export class BookWishlistComponent implements OnInit {
     }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','book');
+        sessionStorage.setItem('action','envies');
         const userID = sessionStorage.getItem('userID');
         let booksArray = [];
         this.http.get('/users/' + userID).subscribe(user => {

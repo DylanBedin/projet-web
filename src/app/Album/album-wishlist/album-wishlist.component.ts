@@ -15,6 +15,8 @@ export class AlbumWishlistComponent implements OnInit {
     }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','album');
+        sessionStorage.setItem('action','envies');
         const userID = sessionStorage.getItem('userID');
         let albumsArray = [];
         this.http.get('/users/' + userID).subscribe(user => {
