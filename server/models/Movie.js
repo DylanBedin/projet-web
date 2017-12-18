@@ -9,6 +9,10 @@ var MovieSchema = new mongoose.Schema({
     description: String,
     published_year: String,
     genre: String,
+    avis: [String],
+    note: {type: Number, default: 0},
+    nbVotants: {type: Number, default: 0},
+    hasNoted: [String],
     updated_date: {type: Date, default: Date.now},
 });
 
