@@ -32,7 +32,7 @@ function authenticate(username, password) {
 
             });
         } else {
-            User.findOne({ mail: mail}, function (err, user) {
+            User.findOne({ mail: username}, function (err, user) {
                 if(err) deferred.reject(err.name + ': ' + err.message);
                 if(user && password == user.password){
                     //auth successful

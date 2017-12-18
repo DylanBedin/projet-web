@@ -14,6 +14,7 @@ export class BookDetailComponent implements OnInit {
     user = {};
     avis = [];
     usersAvis = [];
+    myStruct =[];
     note: any;
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
@@ -49,6 +50,7 @@ export class BookDetailComponent implements OnInit {
                     this.user = user;
                     this.usersAvis.push(user['username']);
                     this.avis.push(currentAvis);
+                    this.myStruct.push({user : user['username'], avis : currentAvis});
                     console.log(this.usersAvis);
                     console.log(this.avis);
                 }

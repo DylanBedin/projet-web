@@ -10,7 +10,7 @@
         <dt>Année de publication</dt>
         <dd>{{ book.published_year }}</dd>
     </dl>
-    <div class="col-md-12">
+    <div>
         <button class="btn btn-primary" type="button" id="addCollection" (click)="addBook(book._id, 'booksCollection')">Ajouter à la
             Collection
         </button>
@@ -26,14 +26,12 @@
     <div>
         <table class="table table-bordered">
                 <tr>
-                    <th>Utilisateur</th>
+                    <th id="colUser">Utilisateur</th>
                     <th>Avis</th>
                 </tr>
-                <tr *ngFor="let us of usersAvis">
-                    <td>{{ us }}</td>
-                </tr>
-                <tr *ngFor="let av of avis">
-                    <td>{{ av }}</td>
+                <tr *ngFor="let iteration of myStruct">
+                    <td>{{ iteration.user }}</td>
+                    <td>{{ iteration.avis }}</td>
                 </tr>
         </table>
     </div>
