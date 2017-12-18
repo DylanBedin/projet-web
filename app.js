@@ -8,7 +8,11 @@ var cors = require('cors');
 var originsWhitelist = [
     'http://localhost:4200',
     'http://localhost:3000',
-    'http://localhost'
+    'http://localhost',
+    'http://capsy.ovh:3000',
+    'http://capsy.ovh:4200',
+    'http://capsy.ovh',
+
 ];
 
 
