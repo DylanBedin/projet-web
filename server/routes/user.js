@@ -3,13 +3,14 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/User.js');
 var userService = require('../services/user.service');
+var crypt = require('../services/encrypt');
 
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 
 
 function authenticate(req, res) {
-    userService.authenticate(req.body.username, req.body.password)
+    userService.authenticate(req.body.username, crypt.encrypt(req.body.password))
         .then(function (user) {
             if (user) {
                 // authentication successful
@@ -52,7 +53,9 @@ router.get('/:id', function(req, res, next) {
 
 /* SAVE USER */
 router.post('/', function(req, res, next) {
-  User.create(req.body, function (err, post) {
+    var userCrypted = req.body;
+    userCrypted['password'] = crypt.encrypt(userCrypted['password']);
+  User.create(userCrypted, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
