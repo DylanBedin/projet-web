@@ -271,6 +271,44 @@
             "description": "Invalid input"
           }
         }
+      }
+
+    },
+    "/albums/{albumId}": {
+      "get": {
+        "tags": [
+          "Albums"
+        ],
+        "summary": "Find Album by ID",
+        "description": "Returns a single Album",
+        "operationId": "getAlbumById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "albumId",
+            "in": "path",
+            "description": "ID of Album to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Album"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Album not found"
+          }
+        }
       },
       "put": {
         "tags": [
@@ -288,6 +326,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "albumId",
+            "in": "path",
+            "description": "ID of Album to modif",
+            "required": true,
+            "type": "string"
+          },
           {
             "in": "body",
             "name": "body",
@@ -309,116 +354,6 @@
             "description": "Validation exception"
           }
         }
-      }
-    },
-    "/albums/{albumId}": {
-      "get": {
-        "tags": [
-          "Albums"
-        ],
-        "summary": "Find Album by ID",
-        "description": "Returns a single Album",
-        "operationId": "getAlbumById",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "AlbumId",
-            "in": "path",
-            "description": "ID of Album to return",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Album"
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Album not found"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Albums"
-        ],
-        "summary": "Updates a Album in the store with form data",
-        "description": "",
-        "operationId": "updateAlbumWithForm",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "AlbumId",
-            "in": "path",
-            "description": "ID of Album that needs to be updated",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "title",
-            "in": "formData",
-            "description": "Updated name of the Album",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "author",
-            "in": "formData",
-            "description": "Updated author of the Album",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "in": "formData",
-            "description": "Updated description of the Album",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "published_year",
-            "in": "formData",
-            "description": "Updated year publication of the Album",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "publisher",
-            "in": "formData",
-            "description": "Updated publisher of the Album",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "genre",
-            "in": "formData",
-            "description": "Updated genre of the Album",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        }
       },
       "delete": {
         "tags": [
@@ -433,12 +368,11 @@
         ],
         "parameters": [
           {
-            "name": "AlbumId",
+            "name": "albumId",
             "in": "path",
             "description": "Album id to delete",
             "required": true,
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           }
         ],
         "responses": {
@@ -500,6 +434,43 @@
             "description": "Invalid input"
           }
         }
+      }
+    },
+    "/games/{GameId}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "Find Game by ID",
+        "description": "Returns a single Game",
+        "operationId": "getGameById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "GameId",
+            "in": "path",
+            "description": "ID of Game to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Game not found"
+          }
+        }
       },
       "put": {
         "tags": [
@@ -517,6 +488,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "GameId",
+            "in": "path",
+            "description": "ID of Game to return",
+            "required": true,
+            "type": "string"
+          },
           {
             "in": "body",
             "name": "body",
@@ -538,126 +516,6 @@
             "description": "Validation exception"
           }
         }
-      }
-    },
-    "/games/{gameId}": {
-      "get": {
-        "tags": [
-          "Games"
-        ],
-        "summary": "Find Game by ID",
-        "description": "Returns a single Game",
-        "operationId": "getGameById",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "GameId",
-            "in": "path",
-            "description": "ID of Game to return",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Game"
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Game not found"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Games"
-        ],
-        "summary": "Updates a Game in the collection with form data",
-        "description": "",
-        "operationId": "updateGameWithForm",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "GameId",
-            "in": "path",
-            "description": "ID of Game that needs to be updated",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "title",
-            "in": "formData",
-            "description": "Updated name of the Game",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "author",
-            "in": "formData",
-            "description": "Updated author of the Game",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "in": "formData",
-            "description": "Updated description of the Game",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "published_year",
-            "in": "formData",
-            "description": "Updated year publication of the Game",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "publisher",
-            "in": "formData",
-            "description": "Updated publisher of the Game",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "producer",
-            "in": "formData",
-            "description": "Updated producer of the Game",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "platforms",
-            "in": "formData",
-            "description": "Updated platforms of the Game",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        }
       },
       "delete": {
         "tags": [
@@ -676,8 +534,7 @@
             "in": "path",
             "description": "Game id to delete",
             "required": true,
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           }
         ],
         "responses": {
@@ -739,6 +596,43 @@
             "description": "Invalid input"
           }
         }
+      }
+    },
+    "/movies/{MovieId}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Find Movie by ID",
+        "description": "Returns a single Movie",
+        "operationId": "getMovieById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MovieId",
+            "in": "path",
+            "description": "ID of Movie to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Movies"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Movie not found"
+          }
+        }
       },
       "put": {
         "tags": [
@@ -756,6 +650,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "MovieId",
+            "in": "path",
+            "description": "ID of Movie to return",
+            "required": true,
+            "type": "string"
+          },
           {
             "in": "body",
             "name": "body",
@@ -777,140 +678,6 @@
             "description": "Validation exception"
           }
         }
-      }
-    },
-    "/movies/{movieId}": {
-      "get": {
-        "tags": [
-          "Movies"
-        ],
-        "summary": "Find Movie by ID",
-        "description": "Returns a single Movie",
-        "operationId": "getMovieById",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "MovieId",
-            "in": "path",
-            "description": "ID of Movie to return",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Movies"
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Movie not found"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Movies"
-        ],
-        "summary": "Updates a Movie in the store with form data",
-        "description": "",
-        "operationId": "updateMovieWithForm",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "MovieId",
-            "in": "path",
-            "description": "ID of Movie that needs to be updated",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "director",
-            "in": "formData",
-            "description": "Updated director of the Movie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "title",
-            "in": "formData",
-            "description": "Updated name of the Movie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "genre",
-            "in": "formData",
-            "description": "Updated genre of the Movie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "in": "formData",
-            "description": "Updated description of the Movie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "published_year",
-            "in": "formData",
-            "description": "Updated year publication of the Movie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "publisher",
-            "in": "formData",
-            "description": "Updated publisher of the Movie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "writher",
-            "in": "formData",
-            "description": "Updated writher of the Movie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "producer",
-            "in": "formData",
-            "description": "Updated producer of the Movie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "actors",
-            "in": "formData",
-            "description": "Updated producer of the Movie",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        }
       },
       "delete": {
         "tags": [
@@ -929,8 +696,7 @@
             "in": "path",
             "description": "Movie id to delete",
             "required": true,
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           }
         ],
         "responses": {
@@ -992,6 +758,43 @@
             "description": "Invalid input"
           }
         }
+      }
+    },
+    "/series/{SerieId}": {
+      "get": {
+        "tags": [
+          "Series"
+        ],
+        "summary": "Find Serie by ID",
+        "description": "Returns a single Serie",
+        "operationId": "getSerieById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "SerieId",
+            "in": "path",
+            "description": "ID of Serie to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Series"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Serie not found"
+          }
+        }
       },
       "put": {
         "tags": [
@@ -1009,6 +812,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "SerieId",
+            "in": "path",
+            "description": "ID of Serie to return",
+            "required": true,
+            "type": "string"
+          },
           {
             "in": "body",
             "name": "body",
@@ -1030,133 +840,6 @@
             "description": "Validation exception"
           }
         }
-      }
-    },
-    "/series/{serieId}": {
-      "get": {
-        "tags": [
-          "Series"
-        ],
-        "summary": "Find Serie by ID",
-        "description": "Returns a single Serie",
-        "operationId": "getSerieById",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "SerieId",
-            "in": "path",
-            "description": "ID of Serie to return",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Series"
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Serie not found"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Series"
-        ],
-        "summary": "Updates a Serie in the store with form data",
-        "description": "",
-        "operationId": "updateSerieWithForm",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "SerieId",
-            "in": "path",
-            "description": "ID of Serie that needs to be updated",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "title",
-            "in": "formData",
-            "description": "Updated name of the Serie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "author",
-            "in": "formData",
-            "description": "Updated author of the Serie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "in": "formData",
-            "description": "Updated description of the Serie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "published_year",
-            "in": "formData",
-            "description": "Updated year publication of the Serie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "published",
-            "in": "formData",
-            "description": "Updated publisher of the Serie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "actors",
-            "in": "formData",
-            "description": "Updated genre of the Serie",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "channel",
-            "in": "formData",
-            "description": "Updated channel of the Serie",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "nb_seasons",
-            "in": "formData",
-            "description": "Updated nb_seasons of the Serie",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        }
       },
       "delete": {
         "tags": [
@@ -1175,8 +858,7 @@
             "in": "path",
             "description": "Serie id to delete",
             "required": true,
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           }
         ],
         "responses": {
@@ -1240,6 +922,43 @@
             "description": "Invalid input"
           }
         }
+      }
+    },
+    "/books/{BookId}": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Find Book by ID",
+        "description": "Returns a single Book",
+        "operationId": "getBookById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "BookId",
+            "in": "path",
+            "description": "ID of Book to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Books"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
       },
       "put": {
         "tags": [
@@ -1257,6 +976,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "BookId",
+            "in": "path",
+            "description": "ID of Book to return",
+            "required": true,
+            "type": "string"
+          },
           {
             "in": "body",
             "name": "body",
@@ -1278,116 +1004,6 @@
             "description": "Validation exception"
           }
         }
-      }
-    },
-    "/books/{:_id}": {
-      "get": {
-        "tags": [
-          "Books"
-        ],
-        "summary": "Find Book by ID",
-        "description": "Returns a single Book",
-        "operationId": "getBookById",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "BookId",
-            "in": "path",
-            "description": "ID of Book to return",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Books"
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Book not found"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Books"
-        ],
-        "summary": "Updates a Book in the store with form data",
-        "description": "",
-        "operationId": "updateBookWithForm",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "_id",
-            "in": "path",
-            "description": "ID of Book that needs to be updated",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "isbn",
-            "in": "formData",
-            "description": "Updated isbn of the Book",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "title",
-            "in": "formData",
-            "description": "Updated name of the Book",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "author",
-            "in": "formData",
-            "description": "Updated author of the Book",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "in": "formData",
-            "description": "Updated description of the Book",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "published_year",
-            "in": "formData",
-            "description": "Updated year publication of the Book",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "publisher",
-            "in": "formData",
-            "description": "Updated publisher of the Book",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        }
       },
       "delete": {
         "tags": [
@@ -1402,11 +1018,11 @@
         ],
         "parameters": [
           {
-            "name": "_id",
+            "name": "BookId",
             "in": "path",
             "description": "Book id to delete",
             "required": true,
-            "type": "string",
+            "type": "string"
           }
         ],
         "responses": {
@@ -1425,8 +1041,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "username": {
           "type": "string"
@@ -1452,9 +1067,8 @@
     "Album": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
+        "_id": {
+          "type": "string"
         },
         "title": {
           "type": "string"
@@ -1466,7 +1080,7 @@
           "type": "string"
         },
         "published_year": {
-          "type": "string"
+          "type": "integer"
         },
         "publisher": {
           "type": "string"
@@ -1487,8 +1101,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "title": {
           "type": "string"
@@ -1500,7 +1113,7 @@
           "type": "string"
         },
         "published_year": {
-          "type": "string"
+          "type": "integer"
         },
         "publisher": {
           "type": "string"
@@ -1530,8 +1143,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "director": {
           "type": "string"
@@ -1546,7 +1158,7 @@
           "type": "string"
         },
         "published_year": {
-          "type": "string"
+          "type": "integer"
         },
         "wrtier": {
           "type": "string"
@@ -1576,8 +1188,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "title": {
           "type": "string"
@@ -1589,13 +1200,13 @@
           "type": "string"
         },
         "nb_seasons": {
-          "type": "string"
+          "type": "integer"
         },
         "description": {
           "type": "string"
         },
         "published_year": {
-          "type": "string"
+          "type": "integer"
         },
         "published": {
           "type": "string"
@@ -1622,7 +1233,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
+          "type": "string"
         },
         "isbn": {
           "type": "string"
@@ -1637,8 +1248,7 @@
           "type": "string"
         },
         "published_year": {
-          "type": "integer",
-          "exemple":2017
+          "type": "integer"
         },
         "publisher": {
           "type": "string"
