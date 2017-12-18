@@ -50,6 +50,7 @@ import {AuthGuardConnected, AuthGuardDisconnected} from "../../server/services/a
 import { BookAvisComponent } from './Book/book-avis/book-avis.component';
 import { AlbumAvisComponent } from './Album/album-avis/album-avis.component';
 import { GameAvisComponent } from './Game/game-avis/game-avis.component';
+import { MovieAvisComponent } from './Movie/movie-avis/movie-avis.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent, canActivate: [AuthGuardDisconnected] },
@@ -258,6 +259,12 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardConnected]
     },
     {
+        path: 'movie-avis/:id',
+        component: MovieAvisComponent,
+        data: {title: 'Movie avis'},
+        canActivate: [AuthGuardConnected]
+    },
+    {
         path: '**',
         redirectTo: 'login',
         pathMatch: 'full',
@@ -324,6 +331,7 @@ const appRoutes: Routes = [
         BookAvisComponent,
         AlbumAvisComponent,
         GameAvisComponent,
+        MovieAvisComponent,
     ],
     imports: [
         BrowserModule,

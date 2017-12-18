@@ -11,12 +11,25 @@ export class MovieDetailComponent implements OnInit {
 
     movie = {};
     user = {};
+    avis = [];
+    usersAvis = [];
+    note: any;
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     }
 
     ngOnInit() {
         this.getMovieDetail(this.route.snapshot.params['id']);
+        this.getMovieAvis(this.route.snapshot.params['id']);
+        this.getNote(this.route.snapshot.params['id']);
+    }
+
+    getNote(id){
+        this.http.get('/movies/' + id).subscribe(data => {
+                this.movie = data;
+                this.note = this.movie['note'];
+            }
+        )
     }
 
     getMovieDetail(id) {
@@ -25,6 +38,24 @@ export class MovieDetailComponent implements OnInit {
         });
     }
 
+    getMovieAvis(id) {
+        this.http.get('/movies/' + id).subscribe(data => {
+            this.movie = data;
+            for (var i = 0; i < this.movie['avis'].length; i += 2) {
+                console.log("i=" + i);
+                let currentAvis = this.movie['avis'][i+1];
+                this.http.get('/users/' + this.movie['avis'][i]).subscribe(user => {
+                        this.user = user;
+                        this.usersAvis.push(user['username']);
+                        this.avis.push(currentAvis);
+                        console.log(this.usersAvis);
+                        console.log(this.avis);
+                    }
+                );
+            }
+        });
+    }
+    
     deleteMovie(id) {
         console.log(id);
         this.http.delete('/movies/' + id)
