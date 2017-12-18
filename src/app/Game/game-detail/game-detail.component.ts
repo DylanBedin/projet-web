@@ -11,12 +11,26 @@ export class GameDetailComponent implements OnInit {
 
     game = {};
     user = {};
+    avis = [];
+    usersAvis = [];
+    note: any;
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     }
 
     ngOnInit() {
         this.getGameDetail(this.route.snapshot.params['id']);
+        this.getGameAvis(this.route.snapshot.params['id']);
+        this.getNote(this.route.snapshot.params['id']);
+
+    }
+
+    getNote(id){
+        this.http.get('/games/' + id).subscribe(data => {
+                this.game = data;
+                this.note = this.game['note'];
+            }
+        )
     }
 
     getGameDetail(id) {
@@ -24,6 +38,25 @@ export class GameDetailComponent implements OnInit {
             this.game = data;
         });
     }
+
+    getGameAvis(id) {
+        this.http.get('/games/' + id).subscribe(data => {
+            this.game = data;
+            for (var i = 0; i < this.game['avis'].length; i += 2) {
+                console.log("i=" + i);
+                let currentAvis = this.game['avis'][i+1];
+                this.http.get('/users/' + this.game['avis'][i]).subscribe(user => {
+                        this.user = user;
+                        this.usersAvis.push(user['username']);
+                        this.avis.push(currentAvis);
+                        console.log(this.usersAvis);
+                        console.log(this.avis);
+                    }
+                );
+            }
+        });
+    }
+
 
     deleteGame(id) {
         console.log(id);

@@ -17,6 +17,7 @@
       <td>{{ movie.director }}</td>
       <td><a [routerLink]="['/movie-detail', movie._id]">Détails </a></td>
       <button type="button" href="" (click)="removeMovie(movie._id)" class="btn btn-danger">Supprimer</button>
+      <button type="button" [routerLink]="['/movie-avis/', movie._id]">Donner un avis</button>
     </tr>
     </tbody>
   </table>

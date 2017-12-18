@@ -11,6 +11,8 @@ export class MovieCollectionComponent implements OnInit {
 
     movies: any;
     user = {};
+    avis: string;
+    movie = {};
 
     constructor(private http: HttpClient) {
     }
