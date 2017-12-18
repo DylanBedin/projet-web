@@ -11,17 +11,48 @@ export class SerieDetailComponent implements OnInit {
 
     serie = {};
     user = {};
+    avis = [];
+    usersAvis = [];
+    note: any;
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     }
 
     ngOnInit() {
         this.getSerieDetail(this.route.snapshot.params['id']);
+        this.getSerieAvis(this.route.snapshot.params['id']);
+        this.getNote(this.route.snapshot.params['id']);
+    }
+
+    getNote(id){
+        this.http.get('/series/' + id).subscribe(data => {
+                this.serie = data;
+                this.note = this.serie['note'];
+            }
+        )
     }
 
     getSerieDetail(id) {
         this.http.get('/series/' + id).subscribe(data => {
             this.serie = data;
+        });
+    }
+
+    getSerieAvis(id) {
+        this.http.get('/series/' + id).subscribe(data => {
+            this.serie = data;
+            for (var i = 0; i < this.serie['avis'].length; i += 2) {
+                console.log("i=" + i);
+                let currentAvis = this.serie['avis'][i+1];
+                this.http.get('/users/' + this.serie['avis'][i]).subscribe(user => {
+                        this.user = user;
+                        this.usersAvis.push(user['username']);
+                        this.avis.push(currentAvis);
+                        console.log(this.usersAvis);
+                        console.log(this.avis);
+                    }
+                );
+            }
         });
     }
 

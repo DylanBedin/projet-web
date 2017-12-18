@@ -51,6 +51,7 @@ import { BookAvisComponent } from './Book/book-avis/book-avis.component';
 import { AlbumAvisComponent } from './Album/album-avis/album-avis.component';
 import { GameAvisComponent } from './Game/game-avis/game-avis.component';
 import { MovieAvisComponent } from './Movie/movie-avis/movie-avis.component';
+import { SerieAvisComponent } from './Serie/serie-avis/serie-avis.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent, canActivate: [AuthGuardDisconnected] },
@@ -265,6 +266,12 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardConnected]
     },
     {
+        path: 'serie-avis/:id',
+        component: SerieAvisComponent,
+        data: {title: 'Serie avis'},
+        canActivate: [AuthGuardConnected]
+    },
+    {
         path: '**',
         redirectTo: 'login',
         pathMatch: 'full',
@@ -332,6 +339,7 @@ const appRoutes: Routes = [
         AlbumAvisComponent,
         GameAvisComponent,
         MovieAvisComponent,
+        SerieAvisComponent,
     ],
     imports: [
         BrowserModule,
