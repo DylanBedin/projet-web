@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-title',
@@ -9,8 +10,9 @@ import {HttpClient} from "@angular/common/http";
 export class TitleComponent implements OnInit {
     currentUser: any;
 
-    constructor(private http: HttpClient) {
+    constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     }
+
 
     ngOnInit() {
         this.http.get('/users/' + sessionStorage.getItem('userID')).subscribe(user => {
@@ -18,5 +20,10 @@ export class TitleComponent implements OnInit {
             this.currentUser = user;
             console.log(this.currentUser);
         });
+    }
+
+    deco(){
+        sessionStorage.setItem('userID', null);
+        this.router.navigate(['login']);
     }
 }

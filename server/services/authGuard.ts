@@ -6,7 +6,8 @@ export class AuthGuardDisconnected implements CanActivate {
     constructor(private router: Router) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return sessionStorage.getItem('userID') == null;
+        console.log(sessionStorage.getItem('userID') == "null");
+        return sessionStorage.getItem('userID') == null || sessionStorage.getItem('userID') == "null";
     }
 }
 
@@ -15,6 +16,7 @@ export class AuthGuardConnected implements CanActivate {
     constructor(private router: Router) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return sessionStorage.getItem('userID') != null;
+        console.log(sessionStorage.getItem('userID') == null);
+        return sessionStorage.getItem('userID') != null && sessionStorage.getItem('userID') != "null";
     }
 }
