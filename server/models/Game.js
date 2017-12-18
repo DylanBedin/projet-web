@@ -10,6 +10,10 @@ var GameSchema = new mongoose.Schema({
     producer: String,
     genre: String,
     platforms: [String],
+    avis: [String],
+    note: {type: Number, default: 0},
+    nbVotants: {type: Number, default: 0},
+    hasNoted: [String],
     updated_date: {type: Date, default: Date.now},
 });
 
