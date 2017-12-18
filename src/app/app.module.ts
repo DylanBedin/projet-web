@@ -49,6 +49,7 @@ import { SerieWishlistComponent } from './Serie/serie-wishlist/serie-wishlist.co
 import {AuthGuardConnected, AuthGuardDisconnected} from "../../server/services/authGuard";
 import { BookAvisComponent } from './Book/book-avis/book-avis.component';
 import { AlbumAvisComponent } from './Album/album-avis/album-avis.component';
+import { GameAvisComponent } from './Game/game-avis/game-avis.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent, canActivate: [AuthGuardDisconnected] },
@@ -251,6 +252,12 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardConnected]
     },
     {
+        path: 'game-avis/:id',
+        component: GameAvisComponent,
+        data: {title: 'Game avis'},
+        canActivate: [AuthGuardConnected]
+    },
+    {
         path: '**',
         redirectTo: 'login',
         pathMatch: 'full',
@@ -316,6 +323,7 @@ const appRoutes: Routes = [
         SerieWishlistComponent,
         BookAvisComponent,
         AlbumAvisComponent,
+        GameAvisComponent,
     ],
     imports: [
         BrowserModule,

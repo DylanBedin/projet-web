@@ -17,6 +17,7 @@
       <td>{{ game.publisher }}</td>
       <td><a [routerLink]="['/game-detail', game._id]">Détails </a></td>
       <button type="button" href="" (click)="removeGame(game._id)" class="btn btn-danger">Supprimer</button>
+      <button type="button" [routerLink]="['/game-avis/', game._id]">Donner un avis</button>
     </tr>
     </tbody>
   </table>

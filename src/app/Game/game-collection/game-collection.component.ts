@@ -11,6 +11,9 @@ export class GameCollectionComponent implements OnInit {
 
     games: any;
     user = {};
+    avis: string;
+    album = {};
+
 
     constructor(private http: HttpClient) {
     }
