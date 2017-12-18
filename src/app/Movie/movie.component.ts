@@ -14,6 +14,8 @@ export class MovieComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','movie');
+        sessionStorage.setItem('action','parcourir');
         this.http.get('/movies').subscribe(data => {
             this.movies = data;
         });

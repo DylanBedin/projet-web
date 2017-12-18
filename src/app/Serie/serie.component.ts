@@ -14,6 +14,8 @@ export class SerieComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','serie');
+        sessionStorage.setItem('action','parcourir');
         this.http.get('/series').subscribe(data => {
             this.series = data;
         });

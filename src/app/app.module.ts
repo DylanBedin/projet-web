@@ -33,10 +33,7 @@ import {RegisterComponent} from "./Connexion/register/register.component";
 import { TitleComponent } from './Menus/title/title.component';
 import { CatComponent } from './Menus/cat/cat.component';
 import { LeftComponent } from './Menus/left/left.component';
-import { ParcourirComponent } from './parcourir/parcourir.component';
 import { BookCollectionComponent } from './Book/book-collection/book-collection.component';
-import { CollectionComponent } from './collection/collection.component';
-import { EnviesComponent } from './envies/envies.component';
 import {BookWishlistComponent} from "./Book/book-wishlist/book-wishlist.component";
 import { AlbumCollectionComponent } from './Album/album-collection/album-collection.component';
 import { AlbumWishlistComponent } from './Album/album-wishlist/album-wishlist.component';
@@ -56,11 +53,6 @@ import { SerieAvisComponent } from './Serie/serie-avis/serie-avis.component';
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent, canActivate: [AuthGuardDisconnected] },
     { path: 'register', component: RegisterComponent, canActivate: [AuthGuardDisconnected]},
-    
-    
-    { path: 'parcourir', component: ParcourirComponent, canActivate: [AuthGuardConnected]},
-    { path: 'collection', component: CollectionComponent, canActivate: [AuthGuardConnected]},
-    { path: 'envies', component: EnviesComponent, canActivate: [AuthGuardConnected]},
     {
         path: 'parcourir/albums',
         component: AlbumComponent,
@@ -322,10 +314,7 @@ const appRoutes: Routes = [
         TitleComponent,
         CatComponent,
         LeftComponent,
-        ParcourirComponent,
         BookCollectionComponent,
-        CollectionComponent,
-        EnviesComponent,
         BookWishlistComponent,
         AlbumCollectionComponent,
         AlbumWishlistComponent,

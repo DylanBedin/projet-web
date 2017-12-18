@@ -15,6 +15,8 @@ export class SerieWishlistComponent implements OnInit {
     }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','serie');
+        sessionStorage.setItem('action','envies');
         const userID = sessionStorage.getItem('userID');
         let seriesArray = [];
         this.http.get('/users/' + userID).subscribe(user => {

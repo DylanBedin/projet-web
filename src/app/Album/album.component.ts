@@ -14,6 +14,8 @@ export class AlbumComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','album');
+        sessionStorage.setItem('action','parcourir');
         this.http.get('/albums').subscribe(data => {
             this.albums = data;
         });

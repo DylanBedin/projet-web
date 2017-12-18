@@ -19,6 +19,8 @@ export class AlbumCollectionComponent implements OnInit {
     }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','album');
+        sessionStorage.setItem('action','collection');
         const userID = sessionStorage.getItem('userID');
         let albumsArray = [];
         this.http.get('/users/' + userID).subscribe(user => {

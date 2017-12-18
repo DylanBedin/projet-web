@@ -14,6 +14,8 @@ export class GameComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
+        sessionStorage.setItem('cat','game');
+        sessionStorage.setItem('action','parcourir');
         this.http.get('/games').subscribe(data => {
             this.games = data;
         });
