@@ -48,6 +48,7 @@ import { SerieCollectionComponent } from './Serie/serie-collection/serie-collect
 import { SerieWishlistComponent } from './Serie/serie-wishlist/serie-wishlist.component';
 import {AuthGuardConnected, AuthGuardDisconnected} from "../../server/services/authGuard";
 import { BookAvisComponent } from './Book/book-avis/book-avis.component';
+import { AlbumAvisComponent } from './Album/album-avis/album-avis.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent, canActivate: [AuthGuardDisconnected] },
@@ -244,6 +245,12 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardConnected]
     },
     {
+        path: 'album-avis/:id',
+        component: AlbumAvisComponent,
+        data: {title: 'Album avis'},
+        canActivate: [AuthGuardConnected]
+    },
+    {
         path: '**',
         redirectTo: 'login',
         pathMatch: 'full',
@@ -308,6 +315,7 @@ const appRoutes: Routes = [
         SerieCollectionComponent,
         SerieWishlistComponent,
         BookAvisComponent,
+        AlbumAvisComponent,
     ],
     imports: [
         BrowserModule,

@@ -17,6 +17,7 @@
       <td>{{ album.author }}</td>
       <td><a [routerLink]="['/album-detail', album._id]">Détails </a></td>
       <button type="button" href="" (click)="removeAlbum(album._id)" class="btn btn-danger">Supprimer</button>
+      <button type="button" [routerLink]="['/album-avis/', album._id]">Donner un avis</button>
     </tr>
     </tbody>
   </table>

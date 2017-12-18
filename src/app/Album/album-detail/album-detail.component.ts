@@ -11,12 +11,25 @@ export class AlbumDetailComponent implements OnInit {
 
     album = {};
     user = {};
+    avis = [];
+    usersAvis = [];
+    note: any;
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     }
 
     ngOnInit() {
         this.getAlbumDetail(this.route.snapshot.params['id']);
+        this.getAlbumAvis(this.route.snapshot.params['id']);
+        this.getNote(this.route.snapshot.params['id']);
+    }
+
+    getNote(id){
+        this.http.get('/albums/' + id).subscribe(data => {
+                this.album = data;
+                this.note = this.album['note'];
+            }
+        )
     }
 
     getAlbumDetail(id) {
@@ -24,6 +37,25 @@ export class AlbumDetailComponent implements OnInit {
             this.album = data;
         });
     }
+
+    getAlbumAvis(id) {
+        this.http.get('/albums/' + id).subscribe(data => {
+            this.album = data;
+            for (var i = 0; i < this.album['avis'].length; i += 2) {
+                console.log("i=" + i);
+                let currentAvis = this.album['avis'][i+1];
+                this.http.get('/users/' + this.album['avis'][i]).subscribe(user => {
+                        this.user = user;
+                        this.usersAvis.push(user['username']);
+                        this.avis.push(currentAvis);
+                        console.log(this.usersAvis);
+                        console.log(this.avis);
+                    }
+                );
+            }
+        });
+    }
+
 
     deleteAlbum(id) {
         this.http.delete('/albums/' + id)
