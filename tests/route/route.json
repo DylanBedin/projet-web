@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "post localhost:4200/books",
+			"name": "post localhost:4200/games",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -30,7 +30,7 @@
 							"key": "title",
 							"value": "\"testnewman\"",
 							"description": "",
-							"type": "text"
+							"type": "string"
 						},
 						{
 							"key": "author",
@@ -46,9 +46,9 @@
 						},
 						{
 							"key": "published_year",
-							"value": "2017",
+							"value": 2017,
 							"description": "",
-							"type": "text"
+							"type": "integer"
 						},
 						{
 							"key": "publisher",
