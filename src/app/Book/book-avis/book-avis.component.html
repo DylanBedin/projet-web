@@ -5,13 +5,13 @@
   <div class="form-group">
     <form (ngSubmit)="addAvis(book._id)" #avisForm="ngForm">
       <label for="name" >Avis:</label>
-      <input type="text" class="form-control" [(ngModel)]="avis" name="avis">
-      <button type="submit" class="btn btn-success" [disabled]="!avisForm.form.valid">Envoyer</button>
+      <input type="text" id="avis" class="form-control" [(ngModel)]="avis" name="avis">
+      <button type="submit" id="avisBtn" class="btn btn-success" [disabled]="!avisForm.form.valid">Envoyer</button>
     </form>
     <form (ngSubmit)="note(book._id)" #avisForm="ngForm">
       <label for="name" >note:</label>
-      <input type="number" min="0" max="10" class="form-control" [(ngModel)]="userNote" name="note">
-      <button type="submit" class="btn btn-success" [disabled]="!avisForm.form.valid">Envoyer</button>
+      <input type="number" id="note" min="0" max="10" class="form-control" [(ngModel)]="userNote" name="note">
+      <button type="submit" id="noteBtn" class="btn btn-success" [disabled]="!avisForm.form.valid">Envoyer</button>
     </form>
   </div>
 </div>
