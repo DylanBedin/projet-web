@@ -1,0 +1,10 @@
+*{
+    float:left;
+}
+
+.nav-link{
+    background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);
+    color:white;
+    font-weight: bold;
+    margin: 1rem 0rem 1rem 1rem;
+}
