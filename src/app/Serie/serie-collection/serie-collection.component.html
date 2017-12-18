@@ -19,6 +19,7 @@
       <td>{{ serie.channel }}</td>
       <td><a [routerLink]="['/serie-detail', serie._id]">Détails </a></td>
       <button type="button" href="" (click)="removeSerie(serie._id)" class="btn btn-danger">Supprimer</button>
+      <button type="button" [routerLink]="['/serie-avis/', serie._id]">Donner un avis</button>
     </tr>
     </tbody>
   </table>

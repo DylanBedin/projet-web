@@ -10,6 +10,8 @@ export class SerieCollectionComponent implements OnInit {
 
     series: any;
     user = {};
+    avis: string;
+    serie = {};
 
     constructor(private http: HttpClient) {
     }
