@@ -12,6 +12,8 @@ export class AlbumCollectionComponent implements OnInit {
 
     albums: any;
     user = {};
+    avis: string;
+    album = {};
 
     constructor(private http: HttpClient) {
     }
