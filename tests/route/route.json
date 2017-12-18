@@ -1,0 +1,335 @@
+{
+	"info": {
+		"name": "web",
+		"_postman_id": "56b9367f-880f-59a6-d801-643ed3f65f86",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post localhost:4200/books",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "isbn",
+							"value": "testnewman",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "\"testnewman\"",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "\"test\"",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "\"test\"",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "published_year",
+							"value": "2017",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "publisher",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "updated_date",
+							"value": "2014",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "producer",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "platforms",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4200/games",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"games"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get localhost:4200/books",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "isbn",
+							"value": "testnewman",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "published_year",
+							"value": "2017",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "publisher",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "updated_date",
+							"value": "2014",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4200/books",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"books"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get localhost:4200/games",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "isbn",
+							"value": "testnewman",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "testnewman",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "published_year",
+							"value": "2017",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "publisher",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "updated_date",
+							"value": "2014",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "producer",
+							"value": "test",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "platforms",
+							"value": "test",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4200/games",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"games"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "post localhost:4200/books",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "isbn",
+							"value": "testnewman",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "\"testnewman\"",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "\"test\"",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "\"test\"",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "published_year",
+							"value": "2017",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "publisher",
+							"value": "test",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "updated_date",
+							"value": "2014",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "producer",
+							"value": "test",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "platforms",
+							"value": "test",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4200/books",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"books"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
