@@ -2,23 +2,23 @@
 <app-left></app-left>
 <app-cat></app-cat>
 <div class="container">
-  <h1>Book List</h1>
   <table class="table">
     <thead>
     <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Action</th>
+      <th>Titre</th>
+      <th>Auteur</th>
+      <th>Année de publication</th>
+      <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let book of books">
       <td>{{ book.title }}</td>
       <td>{{ book.author }}</td>
-      <td>
-        <a [routerLink]="['/book-detail', book._id]">Détails </a>
-      </td>
-      <button type="button" href="" (click)="removeBook(book._id)" class="btn btn-danger">Supprimer</button>
+      <td>{{book.published_year}}</td>
+      <td><button class="btn btn-default" [routerLink]="['/book-detail', book._id]">Détails</button></td>
+      <td><button class="btn btn-danger" (click)="removeBook(book._id)">Retirer de ma liste d'envies</button></td>
     </tr>
     </tbody>
   </table>
