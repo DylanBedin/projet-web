@@ -12,12 +12,25 @@ export class BookDetailComponent implements OnInit {
 
     book = {};
     user = {};
+    avis = [];
+    usersAvis = [];
+    note: any;
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     }
 
     ngOnInit() {
         this.getBookDetail(this.route.snapshot.params['id']);
+        this.getBookAvis(this.route.snapshot.params['id']);
+        this.getNote(this.route.snapshot.params['id']);
+    }
+
+    getNote(id){
+        this.http.get('/books/' + id).subscribe(data => {
+            this.book = data;
+            this.note = this.book['note'];
+            }
+        )
     }
 
     getBookDetail(id) {
@@ -26,16 +39,34 @@ export class BookDetailComponent implements OnInit {
         });
     }
 
-  deleteBook(id) {
+    getBookAvis(id) {
+        this.http.get('/books/' + id).subscribe(data => {
+            this.book = data;
+            for (var i = 0; i < this.book['avis'].length; i += 2) {
+                console.log("i=" + i);
+                let currentAvis = this.book['avis'][i+1];
+                this.http.get('/users/' + this.book['avis'][i]).subscribe(user => {
+                    this.user = user;
+                    this.usersAvis.push(user['username']);
+                    this.avis.push(currentAvis);
+                    console.log(this.usersAvis);
+                    console.log(this.avis);
+                }
+                );
+            }
+        });
+    }
+
+    deleteBook(id) {
         console.log(id);
-    this.http.delete('/books/' + id)
-      .subscribe(res => {
-          this.router.navigate(['/parcourir/books']);
-        }, (err) => {
-          console.log(err);
-        }
-      );
-  }
+        this.http.delete('/books/' + id)
+            .subscribe(res => {
+                    this.router.navigate(['/parcourir/books']);
+                }, (err) => {
+                    console.log(err);
+                }
+            );
+    }
 
     addBook(id, list) {
         const userID = sessionStorage.getItem("userID");

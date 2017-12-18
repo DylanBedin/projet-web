@@ -12,6 +12,8 @@ export class BookCollectionComponent implements OnInit {
 
     books: any;
     user = {};
+    avis: string;
+    book = {};
 
     constructor(private http: HttpClient) {
     }
