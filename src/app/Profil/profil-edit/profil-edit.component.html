@@ -1,0 +1,19 @@
+<app-title></app-title>
+<app-left></app-left>
+<app-cat></app-cat>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="updateUser(user._id, user)" #bookForm="ngForm">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="name">Username</label>
+            <input type="text" class="form-control" [(ngModel)]="user.username" name="title" required>
+            <label for="name">Mail</label>
+            <input type="text" class="form-control" [(ngModel)]="user.mail" name="title" required>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
