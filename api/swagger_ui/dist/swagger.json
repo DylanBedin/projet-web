@@ -16,13 +16,34 @@
   ],
   "paths": {
     "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "return list of Users",
+        "description": "returns a map of Users",
+        "operationId": "getUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "post": {
         "tags": [
           "Users"
         ],
-        "summary": "Create user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "createUser",
+        "summary": "Add a new User",
+        "description": "",
+        "operationId": "addUser",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
         "produces": [
           "application/xml",
           "application/json"
@@ -31,7 +52,7 @@
           {
             "in": "body",
             "name": "body",
-            "description": "Created user object",
+            "description": "User object that needs to be added to the collection",
             "required": true,
             "schema": {
               "$ref": "#/definitions/User"
@@ -39,102 +60,29 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "405": {
+            "description": "Invalid input"
           }
         }
       }
     },
-    "/users/login": {
+    "/users/{userId}": {
       "get": {
         "tags": [
           "Users"
         ],
-        "summary": "Logs user into the system",
-        "description": "",
-        "operationId": "loginUser",
+        "summary": "Find user by ID",
+        "description": "Returns a single user",
+        "operationId": "getuserById",
         "produces": [
           "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "username",
-            "in": "query",
-            "description": "The user name for login",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "The password for login in clear text",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "string"
-            },
-            "headers": {
-              "X-Rate-Limit": {
-                "type": "integer",
-                "format": "int32",
-                "description": "calls per hour allowed by the user"
-              },
-              "X-Expires-After": {
-                "type": "string",
-                "format": "date-time",
-                "description": "date in UTC when token expires"
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid username/password supplied"
-          }
-        }
-      }
-    },
-    "/users/logout": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Logs out current logged in user session",
-        "description": "",
-        "operationId": "logoutUser",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/users/{username}": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Get user by user name",
-        "description": "",
-        "operationId": "getUserByName",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "username",
+            "name": "userId",
             "in": "path",
-            "description": "The name that needs to be fetched. Use user1 for testing. ",
+            "description": "ID of user to return",
             "required": true,
             "type": "string"
           }
@@ -147,10 +95,10 @@
             }
           },
           "400": {
-            "description": "Invalid username supplied"
+            "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "User not found"
+            "description": "user not found"
           }
         }
       },
@@ -158,25 +106,29 @@
         "tags": [
           "Users"
         ],
-        "summary": "Updated user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "updateUser",
+        "summary": "Update an existing user",
+        "description": "",
+        "operationId": "updateuser",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
         "produces": [
           "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "username",
+            "name": "userId",
             "in": "path",
-            "description": "name that need to be updated",
+            "description": "ID of user to return",
             "required": true,
             "type": "string"
           },
           {
             "in": "body",
             "name": "body",
-            "description": "Updated user object",
+            "description": "user object that needs to be added to the collection",
             "required": true,
             "schema": {
               "$ref": "#/definitions/User"
@@ -185,10 +137,13 @@
         ],
         "responses": {
           "400": {
-            "description": "Invalid user supplied"
+            "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "User not found"
+            "description": "user not found"
+          },
+          "405": {
+            "description": "Validation exception"
           }
         }
       },
@@ -196,28 +151,28 @@
         "tags": [
           "Users"
         ],
-        "summary": "Delete user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "deleteUser",
+        "summary": "Deletes a user",
+        "description": "",
+        "operationId": "deleteuser",
         "produces": [
           "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "name": "username",
+            "name": "userId",
             "in": "path",
-            "description": "The name that needs to be deleted",
+            "description": "user id to delete",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "400": {
-            "description": "Invalid username supplied"
+            "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "User not found"
+            "description": "user not found"
           }
         }
       }
@@ -1040,16 +995,7 @@
     "User": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "username": {
-          "type": "string"
-        },
-        "firstName": {
-          "type": "string"
-        },
-        "lastName": {
           "type": "string"
         },
         "email": {
@@ -1058,6 +1004,96 @@
         "password": {
           "type": "string",
           "format": "password"
+        },
+        "albumsCollection": {
+          "type": "array",
+          "xml": {
+            "name": "albumsCollection"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "booksCollection": {
+          "type": "array",
+          "xml": {
+            "name": "booksCollection"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "gamesCollection": {
+          "type": "array",
+          "xml": {
+            "name": "gamesCollection"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "moviesCollection": {
+          "type": "array",
+          "xml": {
+            "name": "moviesCollection"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "seriesCollection": {
+          "type": "array",
+          "xml": {
+            "name": "seriesCollection"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "albumsEnvies": {
+          "type": "array",
+          "xml": {
+            "name": "albumsEnvies"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "booksEnvies": {
+          "type": "array",
+          "xml": {
+            "name": "booksEnvies"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "gamesEnvies": {
+          "type": "array",
+          "xml": {
+            "name": "gamesEnvies"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "moviesEnvies": {
+          "type": "array",
+          "xml": {
+            "name": "moviesEnvies"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "seriesEnvies": {
+          "type": "array",
+          "xml": {
+            "name": "seriesEnvies"
+          },
+          "items": {
+            "type": "string"
+          }
         }
       },
       "xml": {
@@ -1067,31 +1103,43 @@
     "Album": {
       "type": "object",
       "properties": {
-        "_id": {
-          "type": "string"
-        },
         "title": {
           "type": "string"
         },
         "author": {
           "type": "string"
         },
-        "description": {
-          "type": "string"
-        },
         "published_year": {
           "type": "integer"
-        },
-        "publisher": {
-          "type": "string"
-        },
-        "genre": {
-          "type": "string"
         },
         "updated_date": {
           "type": "string",
           "format": "date"
-        }
+        },
+        "avis": {
+            "type": "array",
+            "xml": {
+              "name": "avis"
+            },
+            "items": {
+              "type": "string"
+            }
+          },
+          "note": {
+            "type": "integer"
+          },
+          "nbVotants": {
+            "type": "integer"
+          },
+          "hasNoted": {
+            "type": "array",
+            "xml": {
+              "name": "hasNoted"
+            },
+            "items": {
+              "type": "string"
+            }
+          }
       },
       "xml": {
         "name": "Album"
@@ -1100,39 +1148,36 @@
     "Game": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "title": {
-          "type": "string"
-        },
-        "author": {
-          "type": "string"
-        },
-        "description": {
           "type": "string"
         },
         "published_year": {
           "type": "integer"
         },
+        "developer": {
+          "type": "string"
+        },
         "publisher": {
           "type": "string"
-        },
-        "producer": {
-          "type": "string"
-        },
-        "platforms": {
-          "type": "array",
-          "xml": {
-            "name": "platforms"
-          },
-          "items": {
-            "type": "string"
-          }
         },
         "updated_date": {
           "type": "string",
           "format": "date"
+        },
+        "note": {
+          "type": "integer"
+        },
+        "nbVotants": {
+          "type": "integer"
+        },
+        "hasNoted": {
+          "type": "array",
+          "xml": {
+            "name": "hasNoted"
+          },
+          "items": {
+            "type": "string"
+          }
         }
       },
       "xml": {
@@ -1142,29 +1187,14 @@
     "Movies": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "director": {
           "type": "string"
         },
         "title": {
           "type": "string"
         },
-        "genre": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
         "published_year": {
           "type": "integer"
-        },
-        "wrtier": {
-          "type": "string"
-        },
-        "producer": {
-          "type": "string"
         },
         "actors": {
           "type": "array",
@@ -1178,6 +1208,21 @@
         "updated_date": {
           "type": "string",
           "format": "date"
+        },
+        "note": {
+          "type": "integer"
+        },
+        "nbVotants": {
+          "type": "integer"
+        },
+        "hasNoted": {
+          "type": "array",
+          "xml": {
+            "name": "hasNoted"
+          },
+          "items": {
+            "type": "string"
+          }
         }
       },
       "xml": {
@@ -1187,29 +1232,11 @@
     "Series": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "title": {
-          "type": "string"
-        },
-        "author": {
-          "type": "string"
-        },
-        "channel": {
-          "type": "string"
-        },
-        "nb_seasons": {
-          "type": "integer"
-        },
-        "description": {
           "type": "string"
         },
         "published_year": {
           "type": "integer"
-        },
-        "published": {
-          "type": "string"
         },
         "actors": {
           "type": "array",
@@ -1223,6 +1250,21 @@
         "updated_date": {
           "type": "string",
           "format": "date"
+        },
+        "note": {
+          "type": "integer"
+        },
+        "nbVotants": {
+          "type": "integer"
+        },
+        "hasNoted": {
+          "type": "array",
+          "xml": {
+            "name": "hasNoted"
+          },
+          "items": {
+            "type": "string"
+          }
         }
       },
       "xml": {
@@ -1230,32 +1272,35 @@
       }
     },
     "Books": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "published_year": {
+            "type": "integer"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date"
         },
-        "isbn": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "author": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "published_year": {
+        "note": {
           "type": "integer"
         },
-        "publisher": {
-          "type": "string"
+        "nbVotants": {
+          "type": "integer"
         },
-        "updated_date": {
-          "type": "string",
-          "format": "date"
+        "hasNoted": {
+          "type": "array",
+          "xml": {
+            "name": "hasNoted"
+          },
+          "items": {
+            "type": "string"
+          }
         }
       },
       "xml": {
