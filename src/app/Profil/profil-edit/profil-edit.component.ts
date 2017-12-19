@@ -15,12 +15,13 @@ export class ProfilEditComponent implements OnInit {
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.getBook(this.route.snapshot.params['id']);
+        this.getUser(this.route.snapshot.params['id']);
     }
 
-    getBook(id) {
-        this.http.get('/books/'+id).subscribe(data => {
+    getUser(id) {
+        this.http.get('/users/'+id).subscribe(data => {
             this.user = data;
+            console.log(this.user);
         });
     }
 

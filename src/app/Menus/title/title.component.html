@@ -10,9 +10,10 @@
   <div class="navbar-collapse">
     <ul class="nav navbar-nav navbar-right">
       <li class="hi" >Connecté en tant que {{currentUser?.username}}  </li>
+      <li> <button type="button"  (click)="profil()" class="btn btn-primary" id="profil">Mon Profil</button></li>
       <li> <button type="button"  (click)="deco()" class="btn btn-primary" id="decoTitle">Déconnexion</button></li>
     </ul>
 
-  </div><!-- /.navbar-collapse -->
+  </div>
 
 </nav>
