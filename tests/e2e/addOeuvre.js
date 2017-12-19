@@ -14,18 +14,14 @@ describe('Ajout et notation dune oeuvre', function() {
         var addBook = element(by.id('addBook'));
         addBook.click();
 
-        var isbn = element(by.id('isbn'));
         var title = element(by.id('title'));
         var author = element(by.id('author'));
         var year = element(by.id('year'));
-        var publisher = element(by.id('publisher'));
         var save = element(by.id('save'));
 
-        isbn.sendKeys("test");
         title.sendKeys("test");
         author.sendKeys("test");
         year.sendKeys("2017");
-        publisher.sendKeys("test");
         save.click();
 
         var addCollection = element(by.id('addCollection'));
