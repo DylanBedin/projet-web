@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-serie-detail',
-  templateUrl: './serie-detail.component.html',
-  styleUrls: ['./serie-detail.component.css']
+    selector: 'app-serie-detail',
+    templateUrl: './serie-detail.component.html',
+    styleUrls: ['./serie-detail.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SerieDetailComponent implements OnInit {
 
@@ -13,6 +14,7 @@ export class SerieDetailComponent implements OnInit {
     user = {};
     avis = [];
     usersAvis = [];
+    myStruct =[];
     note: any;
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
@@ -48,6 +50,7 @@ export class SerieDetailComponent implements OnInit {
                         this.user = user;
                         this.usersAvis.push(user['username']);
                         this.avis.push(currentAvis);
+                        this.myStruct.push({user : user['username'], avis : currentAvis});
                         console.log(this.usersAvis);
                         console.log(this.avis);
                     }

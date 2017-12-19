@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-serie-edit',
-  templateUrl: './serie-edit.component.html',
-  styleUrls: ['./serie-edit.component.css']
+    selector: 'app-serie-edit',
+    templateUrl: './serie-edit.component.html',
+    styleUrls: ['./serie-edit.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SerieEditComponent implements OnInit {
-
 
     serie = {};
 

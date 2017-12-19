@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-serie-avis',
-  templateUrl: './serie-avis.component.html',
-  styleUrls: ['./serie-avis.component.css']
+    selector: 'app-serie-avis',
+    templateUrl: './serie-avis.component.html',
+    styleUrls: ['./serie-avis.component.css']
 })
 export class SerieAvisComponent implements OnInit {
 

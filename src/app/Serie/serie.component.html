@@ -2,34 +2,24 @@
 <app-left></app-left>
 <app-cat></app-cat>
 <div class="container">
-  <h1>Liste de Séries</h1>
-  <button type="button" class="btn btn-info btn-lg btn3d" [routerLink]="['/serie-create']"> Ajouter Série</button>
+  <button type="button" id="addSerie" class="btn btn-info btn-lg btn3d"   [routerLink]="['/serie-create']">Créer la fiche d'un livre manquant</button>
   <table class="table">
     <thead>
     <tr>
       <th>Titre</th>
       <th>Réalisateur</th>
-      <th>Producteur</th>
-      <th>Scénariste</th>
-      <th>Acteurs</th>
-      <th>Description</th>
-      <th>Année de Sortie</th>
-      <th>Genre</th>
-      <th>Action</th>
+      <th>Acteurs principaux</th>
+      <th>Année de publication</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let serie of series">
       <td>{{ serie.title }}</td>
       <td>{{ serie.director }}</td>
-      <td>{{ serie.author }}</td>
-      <td>{{ serie.channel }}</td>
       <td>{{ serie.actors }}</td>
-      <td>{{ serie.nb_seasons }}</td>
-      <td>{{ serie.description }}</td>
-      <td>{{ serie.published_year }}</td>
-      <td>{{ serie.genre }}</td>
-      <td><a [routerLink]="['/serie-detail', serie._id]">Détails </a></td>
+      <td>{{serie.published_year}}</td>
+      <td><button class="btn btn-default" [routerLink]="['/serie-detail', serie._id]">Détails</button></td>
     </tr>
     </tbody>
   </table>

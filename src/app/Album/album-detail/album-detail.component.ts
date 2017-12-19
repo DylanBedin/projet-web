@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-album-detail',
-  templateUrl: './album-detail.component.html',
-  styleUrls: ['./album-detail.component.css']
+    selector: 'app-album-detail',
+    templateUrl: './album-detail.component.html',
+    styleUrls: ['./album-detail.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AlbumDetailComponent implements OnInit {
 
@@ -13,6 +14,7 @@ export class AlbumDetailComponent implements OnInit {
     user = {};
     avis = [];
     usersAvis = [];
+    myStruct =[];
     note: any;
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
@@ -48,6 +50,7 @@ export class AlbumDetailComponent implements OnInit {
                         this.user = user;
                         this.usersAvis.push(user['username']);
                         this.avis.push(currentAvis);
+                        this.myStruct.push({user : user['username'], avis : currentAvis});
                         console.log(this.usersAvis);
                         console.log(this.avis);
                     }
@@ -56,8 +59,8 @@ export class AlbumDetailComponent implements OnInit {
         });
     }
 
-
     deleteAlbum(id) {
+        console.log(id);
         this.http.delete('/albums/' + id)
             .subscribe(res => {
                     this.router.navigate(['/parcourir/albums']);
@@ -74,7 +77,6 @@ export class AlbumDetailComponent implements OnInit {
                 this.user = res;
                 if (this.user[list].indexOf(id) == -1) {
                     this.user[list].push(id);
-                    console.log(this.user);
                 }
                 this.http.put('/users/' + userID, this.user).subscribe(data => {
                 });

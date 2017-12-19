@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-serie-wishlist',
-  templateUrl: './serie-wishlist.component.html',
-  styleUrls: ['./serie-wishlist.component.css']
+    selector: 'app-serie-wishlist',
+    templateUrl: './serie-wishlist.component.html',
+    styleUrls: ['./serie-wishlist.component.css']
 })
 export class SerieWishlistComponent implements OnInit {
 
@@ -21,15 +21,9 @@ export class SerieWishlistComponent implements OnInit {
         let seriesArray = [];
         this.http.get('/users/' + userID).subscribe(user => {
             this.user = user;
-            for (var i = 0; i < this.user['seriesEnvies'].length; i++) {
-                this.http.get('/series/' + this.user['seriesEnvies'][i]).subscribe(serie => {
-                        if (serie == null) {
-                            this.user['seriesEnvies'].splice(serie, 1);
-                        }
-                        else {
-                            seriesArray.push(serie);
-                        }
-                    }
+            for(var i = 0; i < this.user['seriesEnvies'].length; i++){
+                this.http.get('/series/' + this.user['seriesEnvies'][i]).subscribe(serie =>
+                    seriesArray.push(serie)
                 );
             }
             this.series = seriesArray;
@@ -47,6 +41,9 @@ export class SerieWishlistComponent implements OnInit {
                     });
                     window.location.reload();
                 }
+
             });
     }
+
 }
+

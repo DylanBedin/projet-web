@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-movie-detail',
-  templateUrl: './movie-detail.component.html',
-  styleUrls: ['./movie-detail.component.css']
+    selector: 'app-movie-detail',
+    templateUrl: './movie-detail.component.html',
+    styleUrls: ['./movie-detail.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class MovieDetailComponent implements OnInit {
 
@@ -13,6 +14,7 @@ export class MovieDetailComponent implements OnInit {
     user = {};
     avis = [];
     usersAvis = [];
+    myStruct =[];
     note: any;
 
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
@@ -48,6 +50,7 @@ export class MovieDetailComponent implements OnInit {
                         this.user = user;
                         this.usersAvis.push(user['username']);
                         this.avis.push(currentAvis);
+                        this.myStruct.push({user : user['username'], avis : currentAvis});
                         console.log(this.usersAvis);
                         console.log(this.avis);
                     }
@@ -55,7 +58,7 @@ export class MovieDetailComponent implements OnInit {
             }
         });
     }
-    
+
     deleteMovie(id) {
         console.log(id);
         this.http.delete('/movies/' + id)

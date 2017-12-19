@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 
 @Component({
@@ -11,10 +11,11 @@ export class GameComponent implements OnInit {
 
     games: any;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
     ngOnInit() {
-        sessionStorage.setItem('cat','game');
+        sessionStorage.setItem('cat', 'game');
         sessionStorage.setItem('action','parcourir');
         this.http.get('/games').subscribe(data => {
             this.games = data;

@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+
 
 @Component({
-  selector: 'app-serie-collection',
-  templateUrl: './serie-collection.component.html',
-  styleUrls: ['./serie-collection.component.css']
+    selector: 'app-serie-collection',
+    templateUrl: './serie-collection.component.html',
+    styleUrls: ['./serie-collection.component.css']
 })
+
 export class SerieCollectionComponent implements OnInit {
 
     series: any;
@@ -26,7 +28,7 @@ export class SerieCollectionComponent implements OnInit {
             for (var i = 0; i < this.user['seriesCollection'].length; i++) {
                 this.http.get('/series/' + this.user['seriesCollection'][i]).subscribe(serie => {
                         if (serie == null) {
-                            this.user['series'].splice(serie, 1);
+                            this.user['seriesCollection'].splice(serie, 1);
                         }
                         else {
                             seriesArray.push(serie);

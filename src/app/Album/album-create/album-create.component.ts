@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-album-create',
-  templateUrl: './album-create.component.html',
-  styleUrls: ['./album-create.component.css']
+    selector: 'app-album-create',
+    templateUrl: './album-create.component.html',
+    styleUrls: ['./album-create.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AlbumCreateComponent implements OnInit {
 
+    album = {};
 
     constructor(private http: HttpClient, private router: Router) { }
-
-    album = {};
 
     ngOnInit() {
     }
@@ -27,4 +27,5 @@ export class AlbumCreateComponent implements OnInit {
                 }
             );
     }
+
 }

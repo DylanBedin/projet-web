@@ -1,24 +1,26 @@
 <app-title></app-title>
-<app-cat></app-cat>
 <app-left></app-left>
+<app-cat></app-cat>
 <div class="container">
-  <h1>Serie List</h1>
   <table class="table">
     <thead>
     <tr>
       <th>Titre</th>
       <th>Réalisateur</th>
-      <th>Chaîne</th>
-      <th>Action</th>
+      <th>Acteurs principaux</th>
+      <th>Année de publication</th>
+      <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let serie of series">
       <td>{{ serie.title }}</td>
       <td>{{ serie.director }}</td>
-      <td>{{ serie.channel }}</td>
-      <td><a [routerLink]="['/serie-detail', serie._id]">Détails </a></td>
-      <button type="button" href="" (click)="removeSerie(serie._id)" class="btn btn-danger">Supprimer</button>
+      <td>{{ serie.actors }}</td>
+      <td>{{serie.published_year}}</td>
+      <td><button class="btn btn-default" [routerLink]="['/serie-detail', serie._id]">Détails</button></td>
+      <td><button class="btn btn-danger" (click)="removeSerie(serie._id)">Retirer de ma liste d'envies</button></td>
     </tr>
     </tbody>
   </table>

@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-album-avis',
-  templateUrl: './album-avis.component.html',
-  styleUrls: ['./album-avis.component.css']
+    selector: 'app-album-avis',
+    templateUrl: './album-avis.component.html',
+    styleUrls: ['./album-avis.component.css']
 })
 export class AlbumAvisComponent implements OnInit {
-
 
     album = {};
     avis = "";

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-album-wishlist',
-  templateUrl: './album-wishlist.component.html',
-  styleUrls: ['./album-wishlist.component.css']
+    selector: 'app-album-wishlist',
+    templateUrl: './album-wishlist.component.html',
+    styleUrls: ['./album-wishlist.component.css']
 })
 export class AlbumWishlistComponent implements OnInit {
 
@@ -21,15 +21,9 @@ export class AlbumWishlistComponent implements OnInit {
         let albumsArray = [];
         this.http.get('/users/' + userID).subscribe(user => {
             this.user = user;
-            for (var i = 0; i < this.user['albumsEnvies'].length; i++) {
-                this.http.get('/album/' + this.user['albumsEnvies'][i]).subscribe(album => {
-                        if (album == null) {
-                            this.user['albumsEnvies'].splice(album, 1);
-                        }
-                        else {
-                            albumsArray.push(album)
-                        }
-                    }
+            for(var i = 0; i < this.user['albumsEnvies'].length; i++){
+                this.http.get('/albums/' + this.user['albumsEnvies'][i]).subscribe(album =>
+                    albumsArray.push(album)
                 );
             }
             this.albums = albumsArray;
@@ -50,4 +44,6 @@ export class AlbumWishlistComponent implements OnInit {
 
             });
     }
+
 }
+

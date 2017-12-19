@@ -2,48 +2,30 @@
 <app-left></app-left>
 <app-cat></app-cat>
 <div class="container">
-  <h1>Edit Game</h1>
   <div class="row">
     <div class="col-md-6">
       <form (ngSubmit)="updateGame(game._id, game)" #gameForm="ngForm">
         <div class="form-group">
-          <label for="name">Titre</label>
-          <input type="text" class="form-control" [(ngModel)]="game.title" name="title" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Auteur</label>
-          <input type="text" class="form-control" [(ngModel)]="game.author" name="author" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Description</label>
-          <input type="text" class="form-control" [(ngModel)]="game.description" name="description" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Année de publication</label>
-          <input type="number" class="form-control" [(ngModel)]="game.published_year" name="published_year" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Éditeur</label>
-          <input type="text" class="form-control" [(ngModel)]="game.publisher" name="publisher" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Genre</label>
-          <input type="text" class="form-control" [(ngModel)]="game.genre" name="genre" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Développeurs</label>
-          <input type="text" class="form-control" [(ngModel)]="game.developer" name="genre" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Producteur</label>
-          <input type="text" class="form-control" [(ngModel)]="game.producer" name="genre" required>
-        </div>
-        <div class="form-group">
-          <label for="name">Plateformes</label>
-          <input type="text" class="form-control" [(ngModel)]="game.platforms" name="genre" required>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-success" [disabled]="!gameForm.form.valid">Save</button>
+          <div class="form-group">
+            <label for="name">Titre</label>
+            <input type="text" class="form-control" [(ngModel)]="game.title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="name">Développeur</label>
+            <input type="text" class="form-control" [(ngModel)]="game.developer" name="developer" required>
+          </div>
+          <div class="form-group">
+            <label for="name">Editeur</label>
+            <input type="text" class="form-control" [(ngModel)]="game.publisher" name="publisher" required>
+          </div>
+          <div class="form-group">
+            <label for="name">Année de publication</label>
+            <input type="number" class="form-control" [(ngModel)]="game.published_year" name="published_year" required>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" [disabled]="!gameForm.form.valid">Update</button>
+            <button class="btn btn-danger" [routerLink]="['/game-detail/',game._id]">Annuler</button>
+          </div>
         </div>
       </form>
     </div>

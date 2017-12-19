@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-album-edit',
-  templateUrl: './album-edit.component.html',
-  styleUrls: ['./album-edit.component.css']
+    selector: 'app-album-edit',
+    templateUrl: './album-edit.component.html',
+    styleUrls: ['./album-edit.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AlbumEditComponent implements OnInit {
 
