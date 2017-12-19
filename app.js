@@ -5,6 +5,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+
 var originsWhitelist = [
     'http://localhost:4200',
     'http://localhost:3000',
@@ -24,7 +25,6 @@ var game = require('./server/routes/game');
 var movie = require('./server/routes/movie');
 var serie = require('./server/routes/serie');
 var user = require('./server/routes/user');
-
 
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -57,8 +57,6 @@ app.use('/games', game);
 app.use('/movies', movie);
 app.use('/series', serie);
 app.use('/users',user);
-
-
 
 
 app.get('*', (req, res) => {
