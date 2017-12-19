@@ -26,4 +26,8 @@ export class TitleComponent implements OnInit {
         sessionStorage.setItem('userID', null);
         this.router.navigate(['login']);
     }
+
+    profil(){
+        this.router.navigate(['profil']);
+    }
 }

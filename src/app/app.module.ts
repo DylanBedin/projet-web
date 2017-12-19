@@ -2,10 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-
 import {AppComponent} from './app.component';
 import {BookComponent} from './Book/book.component';
-
 import {RouterModule, Routes} from '@angular/router';
 import {BookDetailComponent} from './Book/book-detail/book-detail.component';
 import {BookCreateComponent} from './Book/book-create/book-create.component';
@@ -43,12 +41,14 @@ import { MovieCollectionComponent } from './Movie/movie-collection/movie-collect
 import { MovieWishlistComponent } from './Movie/movie-wishlist/movie-wishlist.component';
 import { SerieCollectionComponent } from './Serie/serie-collection/serie-collection.component';
 import { SerieWishlistComponent } from './Serie/serie-wishlist/serie-wishlist.component';
-import {AuthGuardConnected, AuthGuardDisconnected} from "../../server/services/authGuard";
+import { AuthGuardConnected, AuthGuardDisconnected } from "../../server/services/authGuard";
 import { BookAvisComponent } from './Book/book-avis/book-avis.component';
 import { AlbumAvisComponent } from './Album/album-avis/album-avis.component';
 import { GameAvisComponent } from './Game/game-avis/game-avis.component';
 import { MovieAvisComponent } from './Movie/movie-avis/movie-avis.component';
 import { SerieAvisComponent } from './Serie/serie-avis/serie-avis.component';
+import { ProfilEditComponent } from "./Profil/profil-edit/profil-edit.component"    ;
+import { ProfilComponent } from './Profil/profil/profil.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -264,6 +264,18 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardConnected]
     },
     {
+        path: 'profil',
+        component: ProfilComponent,
+        data: {title: 'Profil'},
+        canActivate: [AuthGuardConnected]
+    },
+    {
+        path: 'profil-edit/:id',
+        component: ProfilEditComponent,
+        data: {title: 'Profil Edit'},
+        canActivate: [AuthGuardConnected]
+    },
+    {
         path: '**',
         redirectTo: 'login',
         pathMatch: 'full'
@@ -319,6 +331,8 @@ const appRoutes: Routes = [
         GameAvisComponent,
         MovieAvisComponent,
         SerieAvisComponent,
+        ProfilComponent,
+        ProfilEditComponent,
     ],
     imports: [
         BrowserModule,

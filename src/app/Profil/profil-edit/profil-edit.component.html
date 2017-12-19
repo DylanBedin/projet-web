@@ -1,0 +1,23 @@
+<app-title></app-title>
+<app-left></app-left>
+<app-cat></app-cat>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="updateUser(user._id, user)" #profilForm="ngForm">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="name">Username</label>
+            <input type="text" class="form-control" [(ngModel)]="user.username" name="username" required>
+            <label for="name">Mail</label>
+            <input type="text" class="form-control" [(ngModel)]="user.mail" name="mail" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!profilForm.form.valid">Update</button>
+          <button class="btn btn-danger" [routerLink]="['/profil']">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
