@@ -2,21 +2,23 @@
 <app-left></app-left>
 <app-cat></app-cat>
 <div class="container">
-  <h1>Album List</h1>
   <table class="table">
     <thead>
     <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Action</th>
+      <th>Titre</th>
+      <th>Auteur</th>
+      <th>Année de publication</th>
+      <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let album of albums">
       <td>{{ album.title }}</td>
       <td>{{ album.author }}</td>
-      <td><a [routerLink]="['/album-detail', album._id]">Détails </a></td>
-      <button type="button" href="" (click)="removeAlbum(album._id)" class="btn btn-danger">Supprimer</button>
+      <td>{{album.published_year}}</td>
+      <td><button class="btn btn-default" [routerLink]="['/album-detail', album._id]">Détails</button></td>
+      <td><button class="btn btn-danger" (click)="removeAlbum(album._id)">Retirer de ma liste d'envies</button></td>
     </tr>
     </tbody>
   </table>

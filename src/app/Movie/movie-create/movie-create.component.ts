@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-movie-create',
-  templateUrl: './movie-create.component.html',
-  styleUrls: ['./movie-create.component.css']
+    selector: 'app-movie-create',
+    templateUrl: './movie-create.component.html',
+    styleUrls: ['./movie-create.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class MovieCreateComponent implements OnInit {
 
-    constructor(private http: HttpClient, private router: Router) { }
-
     movie = {};
+
+    constructor(private http: HttpClient, private router: Router) { }
 
     ngOnInit() {
     }

@@ -27,12 +27,12 @@ export class AlbumCollectionComponent implements OnInit {
             this.user = user;
             for (var i = 0; i < this.user['albumsCollection'].length; i++) {
                 this.http.get('/albums/' + this.user['albumsCollection'][i]).subscribe(album => {
-                    if (album == null) {
-                        this.user['albumsCollection'].splice(album, 1);
-                    }
-                    else {
-                        albumsArray.push(album)
-                    }
+                        if (album == null) {
+                            this.user['albumsCollection'].splice(album, 1);
+                        }
+                        else {
+                            albumsArray.push(album);
+                        }
                     }
                 );
             }

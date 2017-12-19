@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-movie-avis',
-  templateUrl: './movie-avis.component.html',
-  styleUrls: ['./movie-avis.component.css']
+    selector: 'app-movie-avis',
+    templateUrl: './movie-avis.component.html',
+    styleUrls: ['./movie-avis.component.css']
 })
 export class MovieAvisComponent implements OnInit {
 

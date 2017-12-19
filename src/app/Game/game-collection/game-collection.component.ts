@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+
 
 @Component({
-  selector: 'app-game-collection',
-  templateUrl: './game-collection.component.html',
-  styleUrls: ['./game-collection.component.css']
+    selector: 'app-game-collection',
+    templateUrl: './game-collection.component.html',
+    styleUrls: ['./game-collection.component.css']
 })
-export class GameCollectionComponent implements OnInit {
 
+export class GameCollectionComponent implements OnInit {
 
     games: any;
     user = {};
     avis: string;
     game = {};
-
 
     constructor(private http: HttpClient) {
     }

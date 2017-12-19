@@ -3,9 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-game-avis',
-  templateUrl: './game-avis.component.html',
-  styleUrls: ['./game-avis.component.css']
+    selector: 'app-game-avis',
+    templateUrl: './game-avis.component.html',
+    styleUrls: ['./game-avis.component.css']
 })
 export class GameAvisComponent implements OnInit {
 

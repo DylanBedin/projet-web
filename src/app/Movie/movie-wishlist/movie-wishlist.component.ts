@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-movie-wishlist',
-  templateUrl: './movie-wishlist.component.html',
-  styleUrls: ['./movie-wishlist.component.css']
+    selector: 'app-movie-wishlist',
+    templateUrl: './movie-wishlist.component.html',
+    styleUrls: ['./movie-wishlist.component.css']
 })
 export class MovieWishlistComponent implements OnInit {
 
@@ -46,3 +46,4 @@ export class MovieWishlistComponent implements OnInit {
     }
 
 }
+

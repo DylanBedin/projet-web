@@ -2,56 +2,41 @@
 <app-left></app-left>
 <app-cat></app-cat>
 <div class="container">
-  <h1>{{ album.title }}</h1>
   <dl class="list">
+    <dt>Titre</dt>
+    <dd>{{ album.title }}</dd>
     <dt>Auteur</dt>
     <dd>{{ album.author }}</dd>
-    <dt>Description</dt>
-    <dd>{{ album.description }}</dd>
-    <dt>Label</dt>
-    <dd>{{ album.publisher }}</dd>
-    <dt>Année de Publication</dt>
+    <dt>Année de publication</dt>
     <dd>{{ album.published_year }}</dd>
-    <dt>Genre</dt>
-    <dd>{{ album.genre }}</dd>
   </dl>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <a [routerLink]="['/album-edit', album._id]" class="btn btn-success">Éditer</a>
+  <div>
+    <button class="btn btn-primary" type="button" id="addCollection" (click)="addAlbum(album._id, 'albumsCollection')">Ajouter à la
+      Collection
+    </button>
+    <button class="btn btn-primary" type="button" id="addEnvie" (click)="addAlbum(album._id, 'albumsEnvies')">Ajouter à la Liste
+      d'Envies
+    </button>
+    <button [routerLink]="['/album-edit', album._id]" class="btn btn-default">Éditer</button>
     <button class="btn btn-danger" type="button" (click)="deleteAlbum(album._id)">Supprimer</button>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button class="btn btn-primary" type="button" (click)="addAlbum(album._id, 'albumsCollection')">Ajouter à la Collection</button>
-    </div>
-    <div class="col-md-12">
-      <button class="btn btn-primary" type="button" (click)="addAlbum(album._id, 'albumsEnvies')">Ajouter à la Liste d'Envies</button>
-    </div>
+  <div>
+    <h1> Note : {{ note }}/10 </h1>
+  </div>
+  <div>
+    <table class="table table-bordered">
+      <tr>
+        <th id="colUser">Utilisateur</th>
+        <th>Avis</th>
+      </tr>
+      <tr *ngFor="let iteration of myStruct">
+        <td>{{ iteration.user }}</td>
+        <td>{{ iteration.avis }}</td>
+      </tr>
+    </table>
   </div>
 </div>
-<div>
-  <h1> Note: {{ note }} </h1>
-</div>
 
 
-<table class="table table-bordered">
-  <thead>
-  <tr>
-    <th scope="col">Utilisateur</th>
-    <th scope="col">Avis</th>
-  </tr>
-  </thead>
-  <tbody>
-  <th scope="row">
-    <tr *ngFor="let us of usersAvis">
-      {{ us }}
-    </tr>
-  </th>
-  <th scope="row">
-    <tr *ngFor="let av of avis">
-      {{ av }}
-    </tr>
-  </th>
-  </tbody>
-</table>
+
+

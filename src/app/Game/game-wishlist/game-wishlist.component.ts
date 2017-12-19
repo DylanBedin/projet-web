@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-game-wishlist',
-  templateUrl: './game-wishlist.component.html',
-  styleUrls: ['./game-wishlist.component.css']
+    selector: 'app-game-wishlist',
+    templateUrl: './game-wishlist.component.html',
+    styleUrls: ['./game-wishlist.component.css']
 })
 export class GameWishlistComponent implements OnInit {
 
@@ -41,7 +41,9 @@ export class GameWishlistComponent implements OnInit {
                     });
                     window.location.reload();
                 }
+
             });
     }
 
 }
+

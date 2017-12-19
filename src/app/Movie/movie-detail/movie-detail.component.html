@@ -2,61 +2,43 @@
 <app-left></app-left>
 <app-cat></app-cat>
 <div class="container">
-  <h1>{{ movie.title }}</h1>
   <dl class="list">
+    <dt>Titre</dt>
+    <dd>{{ movie.title }}</dd>
     <dt>Réalisateur</dt>
     <dd>{{ movie.director }}</dd>
-    <dt>Producteur</dt>
-    <dd>{{ movie.producer }}</dd>
-    <dt>Scénariste</dt>
-    <dd>{{ movie.writer }}</dd>
-    <dt>Acteurs</dt>
-    <dd>{{ movie.actors}}</dd>
-    <dt>Description</dt>
-    <dd>{{ movie.description }}</dd>
-    <dt>Année de Sortie</dt>
+    <dt>Acteurs principaux</dt>
+    <dd>{{ movie.actors }}</dd>
+    <dt>Année de publication</dt>
     <dd>{{ movie.published_year }}</dd>
-    <dt>Genre</dt>
-    <dd>{{ movie.genre }}</dd>
   </dl>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <a [routerLink]="['/movie-edit', movie._id]" class="btn btn-success">Éditer</a>
+  <div>
+    <button class="btn btn-primary" type="button" id="addCollection" (click)="addMovie(movie._id, 'moviesCollection')">Ajouter à la
+      Collection
+    </button>
+    <button class="btn btn-primary" type="button" id="addEnvie" (click)="addMovie(movie._id, 'moviesEnvies')">Ajouter à la Liste
+      d'Envies
+    </button>
+    <button [routerLink]="['/movie-edit', movie._id]" class="btn btn-default">Éditer</button>
     <button class="btn btn-danger" type="button" (click)="deleteMovie(movie._id)">Supprimer</button>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <button class="btn btn-primary" type="button" (click)="addMovie(movie._id, 'moviesCollection')">Ajouter à la Collection</button>
-    </div>
-    <div class="col-md-12">
-      <button class="btn btn-primary" type="button" (click)="addMovie(movie._id, 'moviesEnvies')">Ajouter à la Liste d'Envies</button>
-    </div>
+  <div>
+    <h1> Note : {{ note }}/10 </h1>
+  </div>
+  <div>
+    <table class="table table-bordered">
+      <tr>
+        <th id="colUser">Utilisateur</th>
+        <th>Avis</th>
+      </tr>
+      <tr *ngFor="let iteration of myStruct">
+        <td>{{ iteration.user }}</td>
+        <td>{{ iteration.avis }}</td>
+      </tr>
+    </table>
   </div>
 </div>
 
-<div>
-  <h1> Note: {{ note }} </h1>
-</div>
 
 
-<table class="table table-bordered">
-  <thead>
-  <tr>
-    <th scope="col">Utilisateur</th>
-    <th scope="col">Avis</th>
-  </tr>
-  </thead>
-  <tbody>
-  <th scope="row">
-    <tr *ngFor="let us of usersAvis">
-      {{ us }}
-    </tr>
-  </th>
-  <th scope="row">
-    <tr *ngFor="let av of avis">
-      {{ av }}
-    </tr>
-  </th>
-  </tbody>
-</table>
+

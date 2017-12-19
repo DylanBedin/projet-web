@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 
 @Component({
@@ -11,10 +11,11 @@ export class SerieComponent implements OnInit {
 
     series: any;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
     ngOnInit() {
-        sessionStorage.setItem('cat','serie');
+        sessionStorage.setItem('cat', 'serie');
         sessionStorage.setItem('action','parcourir');
         this.http.get('/series').subscribe(data => {
             this.series = data;

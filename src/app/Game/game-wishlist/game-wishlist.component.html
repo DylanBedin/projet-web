@@ -2,21 +2,25 @@
 <app-left></app-left>
 <app-cat></app-cat>
 <div class="container">
-  <h1>Game List</h1>
   <table class="table">
     <thead>
     <tr>
-      <th>Title</th>
-      <th>Éditeur</th>
-      <th>Action</th>
+      <th>Titre</th>
+      <th>Développeur</th>
+      <th>Editeur</th>
+      <th>Année de publication</th>
+      <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let game of games">
       <td>{{ game.title }}</td>
+      <td>{{ game.developer }}</td>
       <td>{{ game.publisher }}</td>
-      <td><a [routerLink]="['/game-detail', game._id]">Détails </a></td>
-      <button type="button" href="" (click)="removeGame(game._id)" class="btn btn-danger">Supprimer</button>
+      <td>{{game.published_year}}</td>
+      <td><button class="btn btn-default" [routerLink]="['/game-detail', game._id]">Détails</button></td>
+      <td><button class="btn btn-danger" (click)="removeGame(game._id)">Retirer de ma liste d'envies</button></td>
     </tr>
     </tbody>
   </table>
