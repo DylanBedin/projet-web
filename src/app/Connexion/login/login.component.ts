@@ -23,11 +23,16 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        // reset login status
-        this.authenticationService.logout();
-
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        if(sessionStorage.getItem('userID') != null || sessionStorage.getItem('userID') != "null"){
+            console.log("slt");
+            this.router.navigate(['/parcourir/albums'])
+        }
+        else{
+            // reset login status
+            this.authenticationService.logout();
+            // get return url from route parameters or default to '/'
+            this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        }
     }
 
     login() {

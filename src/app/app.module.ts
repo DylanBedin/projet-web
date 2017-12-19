@@ -51,7 +51,7 @@ import { MovieAvisComponent } from './Movie/movie-avis/movie-avis.component';
 import { SerieAvisComponent } from './Serie/serie-avis/serie-avis.component';
 
 const appRoutes: Routes = [
-    { path: 'login', component: LoginComponent, canActivate: [AuthGuardDisconnected] },
+    { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent, canActivate: [AuthGuardDisconnected]},
     {
         path: 'parcourir/albums',
@@ -266,22 +266,12 @@ const appRoutes: Routes = [
     {
         path: '**',
         redirectTo: 'login',
-        pathMatch: 'full',
-    },
-    {
-        path: '**',
-        redirectTo: 'parcourir',
-        pathMatch: 'full',
+        pathMatch: 'full'
     },
     {
         path: '',
         redirectTo: 'login',
-        pathMatch: 'full',
-    },
-    {
-        path: '',
-        redirectTo: 'parcourir',
-        pathMatch: 'full',
+        pathMatch: 'full'
     }
 ];
 
